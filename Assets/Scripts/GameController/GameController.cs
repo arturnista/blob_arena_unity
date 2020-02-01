@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -22,6 +22,12 @@ public class GameController : MonoBehaviour
 
     public bool ControlScene;
 
+    [Header("SpawnPoints")]
+    public List<Transform> Left;
+    public List<Transform> Right;    
+    public Transform Mid;
+    private int aux;
+
     void Start()
     {
         main = this;
@@ -29,16 +35,18 @@ public class GameController : MonoBehaviour
         
         UICanvas.gameObject.SetActive(false);
 
-        Vector3 spawnPosition;
-        Vector3 lastSpawnPosition = Vector2.zero;
-        for (int i = 0; i < StartAmount; i++)
+        for(int i =0; i < 3; i++)
         {
-            do
-            {
-                spawnPosition = GetRandomPoint();
-            } while (Vector3.Distance(lastSpawnPosition, spawnPosition) < 10);
-            Instantiate(PecaPrefab, spawnPosition, Quaternion.identity);
+            aux = Random.Range(0, Left.Count);
+            Instantiate(PecaPrefab, Left[aux].position, Quaternion.identity);
+            Left.RemoveAt(aux);
+
+            aux = Random.Range(0, Right.Count);
+            Instantiate(PecaPrefab, Right[aux].position, Quaternion.identity);
+            Right.RemoveAt(aux);
         }
+
+        Instantiate(PecaPrefab, Mid.position, Quaternion.identity);
 
         players = GameObject.FindObjectsOfType<PlayerBag>();
         StartCoroutine(SpawnWeaponCycle());
@@ -116,6 +124,7 @@ public class GameController : MonoBehaviour
             yield return null;
         }
 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }
 

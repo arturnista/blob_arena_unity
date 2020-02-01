@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private float jumpForce;
     private float maxJumpForce;
     private Vector2 gravity;
+    private float gravityModifier;
 
     private new Rigidbody2D rigidbody;
     private float moveDirection;
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 extraVelocity;
     public Vector2 Velocity { get => velocity + extraVelocity; }
 
+    private float allowJumpTime;
     private bool isGrounded;
     public bool IsGrounded { get => isGrounded; }
 
@@ -36,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
 
     protected const float minMoveDistance = 0.001f;
-    protected const float shellRadius = 0.03f;
+    protected const float shellRadius = 0.01f;
 
     void Awake()
     {
@@ -46,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
         jumpForce = Mathf.Sqrt(JumpHeight * 2f * -gravity.y);
         maxJumpForce = Mathf.Sqrt(MaxJumpHeight * 2f * -gravity.y);
         lookingDirection = 1f;
+        gravityModifier = 1.3f;
 
         contactFilter.useTriggers = false;
         contactFilter.SetLayerMask (GroundMask);
@@ -59,9 +62,10 @@ public class PlayerMovement : MonoBehaviour
             moveDirection = Input.GetAxisRaw(inputSchema.HorizontalAxis);
             if (Mathf.Abs(moveDirection) > 0.4f) lookingDirection = moveDirection > 0 ? 1 : -1;
 
-            if (inputSchema.GetKeyDown(inputSchema.Jump) && isGrounded) 
+            if (inputSchema.GetKeyDown(inputSchema.Jump) && (isGrounded || allowJumpTime > 0f)) 
             {
                 velocity.y = maxJumpForce;
+                allowJumpTime = 0f;
             }
             else if (inputSchema.GetKeyUp(inputSchema.Jump) && velocity.y > jumpForce)
             {
@@ -72,6 +76,8 @@ public class PlayerMovement : MonoBehaviour
         {
             moveDirection = 0f;
         }
+        
+        if (allowJumpTime > 0) allowJumpTime -= Time.deltaTime;
 
         targetSpeed = moveDirection * MoveSpeed;
         velocity.x = Mathf.MoveTowards(velocity.x, targetSpeed, Acceleration * Time.deltaTime);
@@ -104,7 +110,10 @@ public class PlayerMovement : MonoBehaviour
         Vector2 hMove = Vector2.right * deltaPosition.x;
         Vector2 hMovement = Movement (hMove, ref velocity);
 
-        velocity += gravity * deltaTime;
+        // if (velocity.y < 0) gravityModifier = 2f;
+        // else gravityModifier = 1f;
+
+        velocity += gravityModifier * gravity * deltaTime;
         velocity.y = Mathf.Clamp(velocity.y, -50.0f, float.PositiveInfinity);
 
         return vMovement + hMovement;
@@ -120,19 +129,20 @@ public class PlayerMovement : MonoBehaviour
             for (int i = 0; i < count; i++) 
             {
                 
-                Vector2 currentNormal = hitBuffer [i].normal;
+                Vector2 currentNormal = hitBuffer[i].normal;
                 if (currentNormal.y > .65f) 
                 {
                     isGrounded = true;
+                    allowJumpTime = .3f;
                 }
-
+                
                 float projection = Vector2.Dot (velocity, currentNormal);
                 if (projection < 0) 
                 {
                     velocity = velocity - projection * currentNormal;
                 }
-
-                float modifiedDistance = hitBuffer [i].distance - shellRadius;
+                
+                float modifiedDistance = hitBuffer[i].distance - shellRadius;
                 distance = modifiedDistance < distance ? modifiedDistance : distance;
 
             }
