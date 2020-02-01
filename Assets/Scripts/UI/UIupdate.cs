@@ -26,7 +26,7 @@ public class UIupdate : MonoBehaviour
                 Npeca++;
             }
 
-            if(Player.GetComponent<PlayerBag>().itens < Npeca)
+            if(Player.GetComponent<PlayerBag>().Itens < Npeca)
             {
                 Pecas[Npeca].SetActive(false);
                 Npeca--;
