@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour
     public int WinAmount;
     public GameObject PecaPrefab;
 
+    private Player[] players;
+
     void Start()
     {
         Vector2 minPosition = new Vector2(-17, -9);
@@ -22,8 +24,10 @@ public class GameController : MonoBehaviour
                 0f
             ), Quaternion.identity);
         }
+
+        players = GameObject.FindObjectsOfType<Player>();
     }
 
-    
+
 
 }
