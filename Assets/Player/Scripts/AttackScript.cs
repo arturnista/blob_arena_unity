@@ -29,22 +29,23 @@ public class AttackScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (inputSchema.GetKeyDown(inputSchema.Attack))
-        {
-            isCharging = true;
-        }
         if (isCharging)
         {
             if (currentForce <= maxForce)
                 currentForce += chargeSpd * Time.deltaTime;
         }
-        if (inputSchema.GetKeyUp(inputSchema.Attack))
-        {
-            Attack(currentForce);
-            currentForce = minForce;
-            isCharging = false;
-        }
+    }
+
+    public void StartAttacking()
+    {
+        isCharging = true;
+    }
+
+    public void StopAttacking()
+    {
+        Attack(currentForce);
+        currentForce = minForce;
+        isCharging = false;
     }
 
     public void Attack(float force)

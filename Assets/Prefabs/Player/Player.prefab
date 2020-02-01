@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &14721946849725064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8985616512002454932}
+  m_Layer: 12
+  m_Name: WeaponReference
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8985616512002454932
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14721946849725064}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.75, y: 0.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2904663154805963521}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2904663153515474796
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,6 +156,7 @@ GameObject:
   - component: {fileID: 2904663154805963522}
   - component: {fileID: 2904663154805963523}
   - component: {fileID: 2904663154805963520}
+  - component: {fileID: 4704409839098370983}
   m_Layer: 12
   m_Name: Player
   m_TagString: Untagged
@@ -146,6 +177,7 @@ Transform:
   m_Children:
   - {fileID: 2904663153515474799}
   - {fileID: 2904663154179936177}
+  - {fileID: 8985616512002454932}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -168,7 +200,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: cb1f38b0de40f8f42a0d4b57efd7d44b, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &2904663154805963524
 BoxCollider2D:
@@ -221,7 +253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 298451e433b000948bede5aa3f9a44ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itens: 0
   peca: {fileID: 245945895314062148, guid: 56c4015811a690e4f8bde3b7120f40c6, type: 3}
 --- !u!114 &2904663154805963523
 MonoBehaviour:
@@ -262,3 +293,17 @@ MonoBehaviour:
   chargeSpd: 2
   atkRadius: 1
   atkOrigin: {fileID: 2904663154179936177}
+--- !u!114 &4704409839098370983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2904663154805963534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a150eeb2ea246ce4d85b55fd25282ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponPos: {fileID: 8985616512002454932}
+  spawnBulletPoint: {fileID: 8985616512002454932}

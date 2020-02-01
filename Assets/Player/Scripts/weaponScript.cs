@@ -4,45 +4,39 @@ using UnityEngine;
 
 public class weaponScript : MonoBehaviour
 {
-    // Start is called before the first frame update
     public Transform weaponPos, spawnBulletPoint;
-    public GameObject bullet;
-    bool isEquiped;
+    private bool isEquiped;
+    public bool IsEquiped { get => isEquiped; }
+
     void Start()
     {
         isEquiped = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (isEquiped)
-        {
-            if (Input.GetKey(KeyCode.Mouse0))
-            {
-                
-               Shoot();
-              
-            }
-           
-        }
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "weapon")
         {
-            collision.transform.SetParent(weaponPos.transform);
-            collision.transform.localPosition = Vector2.zero;
+            Transform weapon = collision.transform;
+            weapon.SetParent(weaponPos.transform);
+            weapon.localPosition = Vector2.zero;
             isEquiped = true;
+
+            Destroy(weapon.GetComponent<Rigidbody2D>());
+            Destroy(weapon.GetComponent<CircleCollider2D>());
+            Destroy(weapon.GetComponent<CircleCollider2D>());
         }
     }
-    void Shoot()
+
+    public void Shoot()
     {
-        Instantiate(bullet, spawnBulletPoint.position, Quaternion.identity);
-        isEquiped = false;
         GameObject obj = weaponPos.GetChild(0).gameObject;
-        Destroy(obj);
-        Debug.Log("Destroy");
+        GameObject bullet = Instantiate(obj.GetComponent<Weapon>().BulletPrefab, spawnBulletPoint.position, Quaternion.identity) as GameObject;
         
+        Vector2 direction = (spawnBulletPoint.position - transform.position).normalized;
+        bullet.GetComponent<Rigidbody2D>().AddForce(direction * 20f, ForceMode2D.Impulse);
+        isEquiped = false;
+        
+        Destroy(obj);        
     }
 }
