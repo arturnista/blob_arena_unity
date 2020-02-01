@@ -25,6 +25,12 @@ public class UIupdate : MonoBehaviour
                 Pecas[Npeca].SetActive(true);
                 Npeca++;
             }
+
+            if(Player.GetComponent<PlayerBag>().itens < Npeca)
+            {
+                Pecas[Npeca].SetActive(false);
+                Npeca--;
+            }
         }
         
     }
