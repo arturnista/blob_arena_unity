@@ -62,7 +62,7 @@ public class AttackScript : MonoBehaviour
         foreach ( Collider2D colliderHit in col)
         {
             if (colliderHit.gameObject == gameObject) continue;
-            colliderHit.gameObject.GetComponent<PlayerBag>().DropPeca(transform, force);
+            colliderHit.gameObject.GetComponent<PlayerBag>().DropPeca(transform, force, true);
         }
 
         isReady = false;
