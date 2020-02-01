@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     private weaponScript playerWeapon;
     private bool isAttacking;
 
+    private bool isStopped;
+    public bool IsStopped { get => isStopped; set => isStopped = value; }
+
     void Awake()
     {
         isAttacking = false;
@@ -19,6 +22,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (!isStopped) return;
+        
         if (Schema.GetKeyDown(Schema.Attack))
         {
             if (playerWeapon.IsEquiped) playerWeapon.Shoot();

@@ -10,12 +10,14 @@ public class PlayerBag : MonoBehaviour
     private int itens;
     public int Itens { get => itens; }
 
+    private Player player;
     private PlayerMovement movement;
 
     void Start()
     {
         itens = 0;
         movement = GetComponent<PlayerMovement>();
+        player = GetComponent<Player>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,7 +29,7 @@ public class PlayerBag : MonoBehaviour
         }
     }
 
-    public void DropPeca(Transform damager, float force, bool bulletHit = false)
+    public void DropPeca(Transform damager, float force, bool shouldStun = false)
     {
         CameraShaker.Instance.ShakeOnce(5f, 10f, .1f, .5f);
         PlayerMovement damagerMovement = damager.GetComponent<PlayerMovement>();
@@ -51,26 +53,22 @@ public class PlayerBag : MonoBehaviour
 
         if(itens <= 0) return;
 
+        GameObject pecaCreated = Instantiate(peca, transform.position + transform.up, Quaternion.identity);
+
+        Vector2 hitDirection;
         if (dir.x < 0)
         {
-            GameObject help;
-            help = Instantiate(peca, transform.position + transform.up, Quaternion.identity);
-
-            Vector2 vec = new Vector2(Random.Range(-1.0f, 0.0f), Random.Range(0.5f, 1.0f));
-            help.GetComponent<Rigidbody2D>().AddForce(vec * 50f, ForceMode2D.Impulse);
-
-            itens--;
+            hitDirection = new Vector2(Random.Range(-1.0f, 0.0f), Random.Range(0.5f, 1.0f));
         }
         else
         {
-            GameObject help;
-            help = Instantiate(peca, transform.position + transform.up, Quaternion.identity);
-            Vector2 vec = new Vector2(Random.Range(0.0f, 1.0f), Random.Range(0.5f, 1.0f));
-            help.GetComponent<Rigidbody2D>().AddForce(vec * 50f, ForceMode2D.Impulse);
-            itens--;
+            hitDirection = new Vector2(Random.Range(0.0f, 1.0f), Random.Range(0.5f, 1.0f));
         }
 
-        if (bulletHit)
+        pecaCreated.GetComponent<Rigidbody2D>().AddForce(hitDirection * 50f, ForceMode2D.Impulse);
+        itens--;
+
+        if (shouldStun)
         {
             StartCoroutine(StunCycle());
         }
@@ -80,7 +78,9 @@ public class PlayerBag : MonoBehaviour
     IEnumerator StunCycle()
     {
         movement.IsStopped = true;
+        player.IsStopped = true;
         yield return new WaitForSeconds(1f);
         movement.IsStopped = false;
+        player.IsStopped = false;
     }
 }
