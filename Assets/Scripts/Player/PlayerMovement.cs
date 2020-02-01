@@ -44,19 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        moveDirection = Input.GetAxisRaw("Horizontal");
-        // if (Schema.GetKey(Schema.Right))
-        // {
-        //     moveDirection = 1f;
-        // }
-        // else if (Schema.GetKey(Schema.Left))
-        // {
-        //     moveDirection = -1f;
-        // }
-        // else
-        // {
-        //     moveDirection = 0f;
-        // }
+        moveDirection = Input.GetAxisRaw(Schema.HorizontalAxis);
 
         if (Schema.GetKeyDown(Schema.Jump) && isGrounded) 
         {
@@ -72,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {   
         MovePlayer(Time.fixedDeltaTime);
-        
+
         rigidbody.MovePosition(rigidbody.position + nextMovement);
         nextMovement = Vector2.zero;
     }

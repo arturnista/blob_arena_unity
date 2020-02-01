@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d30cc26b248b4084988255cfb88922d0, type: 3}
-  m_Name: KeyboardSchema
+  m_Name: Player1Schema
   m_EditorClassIdentifier: 
-  Right: 6400000013010000
-  Left: 6100000014010000
+  HorizontalAxis: Horizontal_1
   Jump: 200000005e010000

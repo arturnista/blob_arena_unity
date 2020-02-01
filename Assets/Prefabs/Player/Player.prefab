@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1719183404482832378}
   - component: {fileID: 4009850930598313996}
   - component: {fileID: 1719183404482832377}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1719183404482832374}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: cb1f38b0de40f8f42a0d4b57efd7d44b, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -93,13 +93,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb9f98b77540d34db3067f9d1edba02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Schema: {fileID: 11400000, guid: a2991b00a022de34282b5f747273353b, type: 2}
+  Schema: {fileID: 11400000, guid: 44bd70082dec6214b8e1ddfb4bd83e1e, type: 2}
   MoveSpeed: 5
   Acceleration: 30
-  JumpHeight: 2
+  JumpHeight: 4
   GroundMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 4352
 --- !u!1 &1719183405984397252
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,7 +110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1719183405984397255}
   - component: {fileID: 1719183405984397254}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
