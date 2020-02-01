@@ -5,16 +5,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    protected const float minMoveDistance = 0.001f;
-    protected const float shellRadius = 0.03f;
-    
-    public InputSchema Schema;
-
     public float MoveSpeed;
     public float Acceleration;
     public float JumpHeight;
-    public float AirDrag;
     public LayerMask GroundMask;
+
+    private InputSchema inputSchema;
 
     private float jumpForce;
     private Vector2 gravity;
@@ -22,26 +18,27 @@ public class PlayerMovement : MonoBehaviour
     private new Rigidbody2D rigidbody;
     private float moveDirection;
     private float lookingDirection;
-    public Vector2 LookingDirection { get => lookingDirection * Vector2.right; }
 
     private float targetSpeed;
-    private Vector2 moveVelocity;
+    private Vector2 velocity;
     private Vector2 extraVelocity;
-    public Vector2 Velocity { get => moveVelocity + extraVelocity; }
+    public Vector2 Velocity { get => velocity + extraVelocity; }
 
     private bool isGrounded;
     public bool IsGrounded { get => isGrounded; }
 
-
     protected ContactFilter2D contactFilter;
     protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
 
+    protected const float minMoveDistance = 0.001f;
+    protected const float shellRadius = 0.03f;
+
     void Awake()
     {
+        inputSchema = GetComponent<Player>().Schema;
         rigidbody = GetComponent<Rigidbody2D>();
         gravity = Physics2D.gravity;
         jumpForce = Mathf.Sqrt(JumpHeight * 2f * -gravity.y);
-
         lookingDirection = 1f;
 
         contactFilter.useTriggers = false;
@@ -51,18 +48,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        moveDirection = Input.GetAxisRaw(Schema.HorizontalAxis);
-        if (moveDirection != 0) lookingDirection = moveDirection; 
+        moveDirection = Input.GetAxisRaw(inputSchema.HorizontalAxis);
+        if (moveDirection != 0) lookingDirection = moveDirection > 0 ? 1 : -1;
 
-        if (Schema.GetKeyDown(Schema.Jump) && isGrounded) 
+        if (inputSchema.GetKeyDown(inputSchema.Jump) && isGrounded) 
         {
-            moveVelocity.y = jumpForce;
+            velocity.y = jumpForce;
             isGrounded = false;
         }
 
         targetSpeed = moveDirection * MoveSpeed;
-        moveVelocity.x = Mathf.MoveTowards(moveVelocity.x, targetSpeed, Acceleration * Time.deltaTime);
-        extraVelocity.x = Mathf.MoveTowards(extraVelocity.x, 0f, AirDrag * Time.deltaTime);
+        velocity.x = Mathf.MoveTowards(velocity.x, targetSpeed, Acceleration * Time.deltaTime);
+        extraVelocity = Vector2.MoveTowards(extraVelocity, Vector2.zero, rigidbody.drag * Time.deltaTime);
 
         FlipSprite();
     }
@@ -74,33 +71,29 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {   
-        Vector2 motion = MovePlayer(Time.fixedDeltaTime);
+        Vector2 moveMotion = MovePlayer(Time.fixedDeltaTime);
 
-        rigidbody.MovePosition(rigidbody.position + motion);
+        rigidbody.MovePosition(rigidbody.position + moveMotion + (extraVelocity * Time.fixedDeltaTime));
     }
 
     Vector2 MovePlayer(float deltaTime)
     {
         isGrounded = false;
-        Vector2 finalVelocity = moveVelocity + extraVelocity;
-        Vector2 deltaPosition = finalVelocity * deltaTime;
+        Vector2 deltaPosition = velocity * deltaTime;
 
         Vector2 vMove = Vector2.up * deltaPosition.y;
-        Vector2 vMovement = Movement (vMove, ref moveVelocity);
+        Vector2 vMovement = Movement (vMove);
 
         Vector2 hMove = Vector2.right * deltaPosition.x;
-        Vector2 hMovement = Movement (hMove, ref moveVelocity);
+        Vector2 hMovement = Movement (hMove);
 
-        moveVelocity += gravity * deltaTime;
-        extraVelocity += gravity * deltaTime;
-
-        moveVelocity.y = Mathf.Clamp(moveVelocity.y, -50.0f, float.PositiveInfinity);
-        extraVelocity.y = Mathf.Clamp(extraVelocity.y, -50.0f, float.PositiveInfinity);
+        velocity += gravity * deltaTime;
+        velocity.y = Mathf.Clamp(velocity.y, -50.0f, float.PositiveInfinity);
 
         return vMovement + hMovement;
     }
 
-    Vector2 Movement(Vector2 move, ref Vector2 velocity)
+    Vector2 Movement(Vector2 move)
     {
         float distance = move.magnitude;
         if (distance > minMoveDistance) 
