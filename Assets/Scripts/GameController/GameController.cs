@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    
+    [Header("Pecas")]   
     public int StartAmount;
     public int WinAmount;
     public GameObject PecaPrefab;
+    [Header("Weapons")]
+    public GameObject[] WeaponsPrefab;
+    public float SpawnTime;
 
     private PlayerBag[] players;
     private bool gameEnded;
@@ -16,25 +19,42 @@ public class GameController : MonoBehaviour
     {
         gameEnded = false;
 
-        Vector2 minPosition = new Vector2(-17, -9);
-        Vector2 maxPosition = new Vector2(17, 9);
-        
         Vector3 spawnPosition;
-        Vector3 lastSpawnPosition = maxPosition;
+        Vector3 lastSpawnPosition = Vector2.zero;
         for (int i = 0; i < StartAmount; i++)
         {
             do
             {
-                spawnPosition = new Vector3(
-                    Random.Range(minPosition.x, maxPosition.x),
-                    Random.Range(minPosition.y, maxPosition.y),
-                    0f
-                );
+                spawnPosition = GetRandomPoint();
             } while (Vector3.Distance(lastSpawnPosition, spawnPosition) < 10);
             Instantiate(PecaPrefab, spawnPosition, Quaternion.identity);
         }
 
         players = GameObject.FindObjectsOfType<PlayerBag>();
+        StartCoroutine(SpawnWeaponCycle());
+    }
+
+    Vector2 GetRandomPoint()
+    {
+        Vector2 minPosition = new Vector2(-17, -9);
+        Vector2 maxPosition = new Vector2(17, 9);
+
+        return new Vector3(
+            Random.Range(minPosition.x, maxPosition.x),
+            Random.Range(minPosition.y, maxPosition.y),
+            0f
+        );
+    }
+
+    IEnumerator SpawnWeaponCycle()
+    {
+        while (!gameEnded)
+        {
+            yield return new WaitForSeconds(SpawnTime);
+
+            GameObject weapon = WeaponsPrefab[Random.Range(0, WeaponsPrefab.Length)];
+            Instantiate(weapon, GetRandomPoint(), Quaternion.identity);
+        }
     }
 
     void LateUpdate()

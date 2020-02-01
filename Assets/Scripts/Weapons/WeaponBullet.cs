@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class WeaponBullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        PlayerBag playerBag = collision.GetComponent<PlayerBag>();
+        if (playerBag != null)
+        {
+            Vector2 dir = (playerBag.transform.position - transform.position).normalized;
+            playerBag.DropPeca(dir.x > 0 ? 1 : 0);
+        } 
+        Destroy(this.gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
