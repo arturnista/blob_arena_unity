@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30cc26b248b4084988255cfb88922d0, type: 3}
   m_Name: KeyboardSchema
   m_EditorClassIdentifier: 
-  Up: 7700000011010000
-  Down: 7300000012010000
   Right: 6400000013010000
   Left: 6100000014010000
+  Jump: 200000005e010000
