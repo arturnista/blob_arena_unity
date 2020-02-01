@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2904663153515474799}
   - component: {fileID: 2904663153515474798}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2904663154179936177}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AttackReference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 2904663154805963522}
   - component: {fileID: 2904663154805963523}
   - component: {fileID: 2904663154805963520}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: cb1f38b0de40f8f42a0d4b57efd7d44b, type: 2}

@@ -4,22 +4,14 @@ using UnityEngine;
 
 public class PlayerBag : MonoBehaviour
 {
-    public int itens;
     public GameObject peca;
 
-    // Start is called before the first frame update
+    private int itens;
+    public int Itens { get => itens; }
+
     void Start()
     {
         itens = 0;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            DropPeca(0);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -35,7 +27,7 @@ public class PlayerBag : MonoBehaviour
         }
     }
 
-    private void DropPeca(int side)//0 - esq || 1 - dir
+    public void DropPeca(int side)//0 - esq || 1 - dir
     {
         if(itens >0)
         {
