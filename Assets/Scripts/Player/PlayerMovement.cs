@@ -10,51 +10,107 @@ public class PlayerMovement : MonoBehaviour
     public float MoveSpeed;
     public float Acceleration;
     public float JumpHeight;
+    public LayerMask GroundMask;
 
     private float jumpForce;
+    private Vector2 gravity;
 
     private new Rigidbody2D rigidbody;
-    private Vector2 moveDirection;
+    private float moveDirection;
 
-    private Vector2 targetVelocity;
+    private float targetSpeed;
     private Vector2 velocity;
 
-    void Start()
+    private bool isGrounded;
+
+    protected ContactFilter2D contactFilter;
+    protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
+
+    protected const float minMoveDistance = 0.001f;
+    protected const float shellRadius = 0.03f;
+
+    private Vector2 nextMovement;
+
+    void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        jumpForce = Mathf.Sqrt(JumpHeight * 2f * -Physics2D.gravity.y);
+        gravity = Physics2D.gravity;
+        jumpForce = Mathf.Sqrt(JumpHeight * 2f * -gravity.y);
+
+        contactFilter.useTriggers = false;
+        contactFilter.SetLayerMask (GroundMask);
+        contactFilter.useLayerMask = true;
     }
 
     void Update()
     {
-        if (Schema.GetKey(Schema.Right))
+        moveDirection = Input.GetAxisRaw(Schema.HorizontalAxis);
+
+        if (Schema.GetKeyDown(Schema.Jump) && isGrounded) 
         {
-            moveDirection.x = 1f;
-        }
-        else if (Schema.GetKey(Schema.Left))
-        {
-            moveDirection.x = -1f;
-        }
-        else
-        {
-            moveDirection.x = 0f;
+            velocity.y = jumpForce;
+            isGrounded = false;
         }
 
-        if (Schema.GetKeyDown(Schema.Up)) 
-        {
-            Vector2 velocity = rigidbody.velocity;
-            velocity.y += jumpForce;
-            rigidbody.velocity = velocity;
-        }
+        targetSpeed = moveDirection * MoveSpeed;
+        velocity.x = Mathf.MoveTowards(velocity.x, targetSpeed, Acceleration * Time.deltaTime);
 
-        targetVelocity = moveDirection * MoveSpeed;
-        velocity = Vector2.MoveTowards(velocity, targetVelocity, Acceleration * Time.deltaTime);
     }
 
     void FixedUpdate()
-    {
-        velocity.y = rigidbody.velocity.y;
-        rigidbody.velocity = velocity;
+    {   
+        MovePlayer(Time.fixedDeltaTime);
+
+        rigidbody.MovePosition(rigidbody.position + nextMovement);
+        nextMovement = Vector2.zero;
     }
+
+    void MovePlayer(float deltaTime)
+    {
+        isGrounded = false;
+        Vector2 deltaPosition = velocity * deltaTime;
+
+        Vector2 vMove = Vector2.up * deltaPosition.y;
+        Vector2 vMovement = Movement (vMove);
+
+        Vector2 hMove = Vector2.right * deltaPosition.x;
+        Vector2 hMovement = Movement (hMove);
+
+        nextMovement += vMovement + hMovement;
+        
+        velocity += gravity * deltaTime;
+        velocity.y = Mathf.Clamp(velocity.y, -50.0f, float.PositiveInfinity);
+    }
+
+    Vector2 Movement(Vector2 move)
+    {
+        float distance = move.magnitude;
+        if (distance > minMoveDistance) 
+        {
+            int count = rigidbody.Cast (move, contactFilter, hitBuffer, distance + shellRadius);
+            
+            for (int i = 0; i < count; i++) 
+            {
+                
+                Vector2 currentNormal = hitBuffer [i].normal;
+                if (currentNormal.y > .65f) 
+                {
+                    isGrounded = true;
+                }
+
+                float projection = Vector2.Dot (velocity, currentNormal);
+                if (projection < 0) 
+                {
+                    velocity = velocity - projection * currentNormal;
+                }
+
+                float modifiedDistance = hitBuffer [i].distance - shellRadius;
+                distance = modifiedDistance < distance ? modifiedDistance : distance;
+
+            }
+        }
+
+        return move.normalized * distance;
+    } 
 
 }

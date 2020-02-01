@@ -6,10 +6,8 @@ using UnityEngine;
 public class InputSchema : ScriptableObject
 {
 
-    public KeyCode[] Up;
-    public KeyCode[] Down;
-    public KeyCode[] Right;
-    public KeyCode[] Left;
+    public string HorizontalAxis;
+    public KeyCode[] Jump;
 
     public bool GetKeyDown(KeyCode[] keys)
     {
