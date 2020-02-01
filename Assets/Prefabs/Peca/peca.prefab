@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 245945895101083085}
   - component: {fileID: 245945895101083074}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 245945895314062202}
   - component: {fileID: 245945895314062149}
   - component: {fileID: 9009294731917118412}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: peca
   m_TagString: Peca
   m_Icon: {fileID: 0}
