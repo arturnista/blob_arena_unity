@@ -16,7 +16,8 @@ public class AttackScript : MonoBehaviour
     private InputSchema inputSchema;
     private float originalMoveSpeed;
 
-    // Start is called before the first frame update
+    private bool isReady;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -25,15 +26,17 @@ public class AttackScript : MonoBehaviour
         currentForce = minForce;
         inputSchema = GetComponent<Player>().Schema;
         originalMoveSpeed = movement.MoveSpeed;
+        isReady = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isCharging)
         {
             if (currentForce <= maxForce)
+            {
                 currentForce += chargeSpd * Time.deltaTime;
+            }
         }
     }
 
@@ -53,15 +56,28 @@ public class AttackScript : MonoBehaviour
 
     public void Attack(float force)
     {
+        if (!isReady) return;
         Collider2D[] col = Physics2D.OverlapCircleAll(atkOrigin.position, atkRadius, PlayerMask);
 
         foreach ( Collider2D colliderHit in col)
         {
             if (colliderHit.gameObject == gameObject) continue;
-            colliderHit.gameObject.GetComponent<PlayerBag>().DropPeca(transform, force);
+            colliderHit.gameObject.GetComponent<PlayerBag>().DropPeca(transform, force, true);
         }
 
-        
+        isReady = false;
+        StartCoroutine(ReadyCoroutine());
+    }
+
+    IEnumerator ReadyCoroutine()
+    {
+        yield return new WaitForSeconds(.6f);
+        SetReady();
+    }
+
+    public void SetReady()
+    {
+        isReady = true;
     }
 
     private void OnDrawGizmos()
