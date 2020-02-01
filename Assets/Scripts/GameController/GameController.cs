@@ -48,8 +48,6 @@ public class GameController : MonoBehaviour
 
         Instantiate(PecaPrefab, Mid.position, Quaternion.identity);
 
-       
-
         players = GameObject.FindObjectsOfType<PlayerBag>();
         StartCoroutine(SpawnWeaponCycle());
     }

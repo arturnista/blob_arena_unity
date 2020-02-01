@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9142943223038022834}
   - component: {fileID: 9142943223038022833}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 9142943224754588603}
   - component: {fileID: 9142943224754588601}
   - component: {fileID: 9043700118738419173}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tomato
   m_TagString: weapon
   m_Icon: {fileID: 0}

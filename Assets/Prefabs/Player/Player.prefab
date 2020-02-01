@@ -270,7 +270,7 @@ MonoBehaviour:
   MoveSpeed: 8
   Acceleration: 35
   JumpHeight: 3
-  MaxJumpHeight: 10
+  MaxJumpHeight: 15
   GroundMask:
     serializedVersion: 2
     m_Bits: 4352
