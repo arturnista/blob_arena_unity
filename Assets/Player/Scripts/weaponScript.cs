@@ -15,6 +15,7 @@ public class weaponScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isEquiped) return;
         if (collision.tag == "weapon")
         {
             Transform weapon = collision.transform;

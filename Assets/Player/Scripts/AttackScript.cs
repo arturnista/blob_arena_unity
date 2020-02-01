@@ -55,16 +55,7 @@ public class AttackScript : MonoBehaviour
         foreach ( Collider2D colliderHit in col)
         {
             if (colliderHit.gameObject == gameObject) continue;
-            
-            PlayerMovement movementHit = colliderHit.gameObject.GetComponent<PlayerMovement>();
-            Vector2 dir = (movementHit.transform.position - transform.position).normalized;
-
-            if(movement.IsGrounded && movementHit.IsGrounded)
-                movementHit.AddExtraVelocity(new Vector2(dir.x * force, Random.Range(0.5f, 1.0f) * force));
-            else
-                movementHit.AddExtraVelocity(dir * force);
-
-            colliderHit.gameObject.GetComponent<PlayerBag>().DropPeca(dir.x > 0 ? 1 : 0);
+            colliderHit.gameObject.GetComponent<PlayerBag>().DropPeca(transform, force);
         }
 
         
