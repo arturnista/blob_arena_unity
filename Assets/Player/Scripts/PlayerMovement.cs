@@ -71,21 +71,22 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {   
-        Vector2 moveMotion = MovePlayer(Time.fixedDeltaTime);
+        Vector2 moveMotion = MovePlayer(Time.fixedDeltaTime, ref velocity);
+        Vector2 extraMoveMotion = MovePlayer(Time.fixedDeltaTime, ref extraVelocity);
 
-        rigidbody.MovePosition(rigidbody.position + moveMotion + (extraVelocity * Time.fixedDeltaTime));
+        rigidbody.MovePosition(rigidbody.position + moveMotion + extraMoveMotion);
     }
 
-    Vector2 MovePlayer(float deltaTime)
+    Vector2 MovePlayer(float deltaTime, ref Vector2 velocity)
     {
         isGrounded = false;
         Vector2 deltaPosition = velocity * deltaTime;
 
         Vector2 vMove = Vector2.up * deltaPosition.y;
-        Vector2 vMovement = Movement (vMove);
+        Vector2 vMovement = Movement (vMove, ref velocity);
 
         Vector2 hMove = Vector2.right * deltaPosition.x;
-        Vector2 hMovement = Movement (hMove);
+        Vector2 hMovement = Movement (hMove, ref velocity);
 
         velocity += gravity * deltaTime;
         velocity.y = Mathf.Clamp(velocity.y, -50.0f, float.PositiveInfinity);
@@ -93,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
         return vMovement + hMovement;
     }
 
-    Vector2 Movement(Vector2 move)
+    Vector2 Movement(Vector2 move, ref Vector2 velocity)
     {
         float distance = move.magnitude;
         if (distance > minMoveDistance) 

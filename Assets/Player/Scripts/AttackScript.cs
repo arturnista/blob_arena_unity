@@ -62,6 +62,8 @@ public class AttackScript : MonoBehaviour
                 movementHit.AddExtraVelocity(new Vector2(dir.x * force, Random.Range(0.5f, 1.0f) * force));
             else
                 movementHit.AddExtraVelocity(dir * force);
+
+            colliderHit.gameObject.GetComponent<PlayerBag>().DropPeca(dir.x > 0 ? 1 : 0);
         }
 
         

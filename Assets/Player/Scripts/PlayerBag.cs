@@ -35,7 +35,7 @@ public class PlayerBag : MonoBehaviour
         }
     }
 
-    private void DropPeca(int side)//0 - esq || 1 - dir
+    public void DropPeca(int side)//0 - esq || 1 - dir
     {
         if(itens >0)
         {
