@@ -47,6 +47,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Legs and Arms
+    uniqueID: 3238270311
+    locked: 0
+  - name: Body
+    uniqueID: 2079347053
+    locked: 0
+  - name: Eyes
+    uniqueID: 1405542337
+    locked: 0
   - name: Weapons
     uniqueID: 4004325581
     locked: 0
