@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class PlayerBag : MonoBehaviour
 {
@@ -23,25 +24,25 @@ public class PlayerBag : MonoBehaviour
         {
             Destroy(collision.gameObject);
             itens++;
-            if(itens >=5 )
-            {
-                //win condition
-            }
         }
     }
 
     public void DropPeca(Transform damager, float force)
     {
+        CameraShaker.Instance.ShakeOnce(5f, 10f, .1f, .5f);
         PlayerMovement damagerMovement = damager.GetComponent<PlayerMovement>();
         Vector2 dir = (transform.position - damager.position).normalized;
-        Debug.Log(dir);
 
         if (damagerMovement != null)
         {
             if(movement.IsGrounded && damagerMovement.IsGrounded)
+            {
                 movement.AddExtraVelocity(new Vector2(dir.x * force, Random.Range(0.5f, 1.0f) * force));
+            }
             else
+            {
                 movement.AddExtraVelocity(dir * force);
+            }
         }
         else
         {
@@ -50,13 +51,13 @@ public class PlayerBag : MonoBehaviour
 
         if(itens <= 0) return;
 
-        if (dir.x > 0)
+        if (dir.x < 0)
         {
             GameObject help;
             help = Instantiate(peca, transform.position + transform.up, Quaternion.identity);
 
             Vector2 vec = new Vector2(Random.Range(-1.0f, 0.0f), Random.Range(0.5f, 1.0f));
-            help.GetComponent<Rigidbody2D>().AddForce(vec * 500);
+            help.GetComponent<Rigidbody2D>().AddForce(vec * 50f, ForceMode2D.Impulse);
 
             itens--;
         }
@@ -65,7 +66,7 @@ public class PlayerBag : MonoBehaviour
             GameObject help;
             help = Instantiate(peca, transform.position + transform.up, Quaternion.identity);
             Vector2 vec = new Vector2(Random.Range(0.0f, 1.0f), Random.Range(0.5f, 1.0f));
-            help.GetComponent<Rigidbody2D>().AddForce(vec * 500);
+            help.GetComponent<Rigidbody2D>().AddForce(vec * 50f, ForceMode2D.Impulse);
             itens--;
         }
         

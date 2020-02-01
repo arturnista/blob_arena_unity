@@ -14,6 +14,7 @@ public class AttackScript : MonoBehaviour
     public Transform atkOrigin;
     private PlayerMovement movement;
     private InputSchema inputSchema;
+    private float originalMoveSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class AttackScript : MonoBehaviour
         isCharging = false;
         currentForce = minForce;
         inputSchema = GetComponent<Player>().Schema;
-       
+        originalMoveSpeed = movement.MoveSpeed;
     }
 
     // Update is called once per frame
@@ -39,6 +40,7 @@ public class AttackScript : MonoBehaviour
     public void StartAttacking()
     {
         isCharging = true;
+        movement.MoveSpeed = originalMoveSpeed / 2f;
     }
 
     public void StopAttacking()
@@ -46,6 +48,7 @@ public class AttackScript : MonoBehaviour
         Attack(currentForce);
         currentForce = minForce;
         isCharging = false;
+        movement.MoveSpeed = originalMoveSpeed;
     }
 
     public void Attack(float force)

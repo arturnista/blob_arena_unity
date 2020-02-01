@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    public static GameController main;
+
     [Header("Pecas")]   
     public int StartAmount;
     public int WinAmount;
@@ -17,6 +19,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        main = this;
         gameEnded = false;
 
         Vector3 spawnPosition;
@@ -79,6 +82,7 @@ public class GameController : MonoBehaviour
             Destroy(player.GetComponent<PlayerMovement>());
             Destroy(player.GetComponent<AttackScript>());
             Destroy(player.GetComponent<PlayerBag>());
+            Destroy(player.GetComponent<Player>());
         }
 
         StartCoroutine(WinCycle(winnerGameobject));
