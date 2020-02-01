@@ -8,11 +8,13 @@ public class PlayerMovement : MonoBehaviour
     public float MoveSpeed;
     public float Acceleration;
     public float JumpHeight;
+    public float MaxJumpHeight;
     public LayerMask GroundMask;
 
     private InputSchema inputSchema;
 
     private float jumpForce;
+    private float maxJumpForce;
     private Vector2 gravity;
 
     private new Rigidbody2D rigidbody;
@@ -27,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     public bool IsGrounded { get => isGrounded; }
 
+    private bool isStopped;
+    public bool IsStopped { get => isStopped; set => isStopped = value; }
+
     protected ContactFilter2D contactFilter;
     protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
 
@@ -39,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         gravity = Physics2D.gravity;
         jumpForce = Mathf.Sqrt(JumpHeight * 2f * -gravity.y);
+        maxJumpForce = Mathf.Sqrt(MaxJumpHeight * 2f * -gravity.y);
         lookingDirection = 1f;
 
         contactFilter.useTriggers = false;
@@ -48,13 +54,23 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        moveDirection = Input.GetAxisRaw(inputSchema.HorizontalAxis);
-        if (Mathf.Abs(moveDirection) > 0.4f) lookingDirection = moveDirection > 0 ? 1 : -1;
-
-        if (inputSchema.GetKeyDown(inputSchema.Jump) && isGrounded) 
+        if (!isStopped)
         {
-            velocity.y = jumpForce;
-            isGrounded = false;
+            moveDirection = Input.GetAxisRaw(inputSchema.HorizontalAxis);
+            if (Mathf.Abs(moveDirection) > 0.4f) lookingDirection = moveDirection > 0 ? 1 : -1;
+
+            if (inputSchema.GetKeyDown(inputSchema.Jump) && isGrounded) 
+            {
+                velocity.y = maxJumpForce;
+            }
+            else if (inputSchema.GetKeyUp(inputSchema.Jump) && velocity.y > jumpForce)
+            {
+                velocity.y = jumpForce;
+            }
+        }
+        else
+        {
+            moveDirection = 0f;
         }
 
         targetSpeed = moveDirection * MoveSpeed;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class GameController : MonoBehaviour
     [Header("Weapons")]
     public GameObject[] WeaponsPrefab;
     public float SpawnTime;
+    [Header("UI")]
+    public Canvas UICanvas;
 
     private PlayerBag[] players;
     private bool gameEnded;
@@ -21,6 +24,8 @@ public class GameController : MonoBehaviour
     {
         main = this;
         gameEnded = false;
+        
+        UICanvas.gameObject.SetActive(false);
 
         Vector3 spawnPosition;
         Vector3 lastSpawnPosition = Vector2.zero;
@@ -85,20 +90,23 @@ public class GameController : MonoBehaviour
             Destroy(player.GetComponent<Player>());
         }
 
+        UICanvas.gameObject.SetActive(true);
+
         StartCoroutine(WinCycle(winnerGameobject));
     }
 
     IEnumerator WinCycle(GameObject winner)
     {
-        Vector2 origin = Camera.main.transform.position;
-        Vector2 target = winner.transform.position;
+        Vector2 origin = winner.transform.position;
+        Vector2 target = Vector2.zero;
 
         float time = Vector3.Distance(origin, target) * .5f;
 
         while (origin != target)
         {
             origin = Vector2.MoveTowards(origin, target, time * Time.deltaTime);
-            Camera.main.transform.position = new Vector3(origin.x, origin.y, -10f);
+            winner.transform.position = origin;
+
             Camera.main.orthographicSize -= 3f * Time.deltaTime;
             yield return null;
         }

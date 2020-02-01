@@ -10,7 +10,7 @@ public class WeaponBullet : MonoBehaviour
         PlayerBag playerBag = collision.GetComponent<PlayerBag>();
         if (playerBag != null)
         {
-            playerBag.DropPeca(transform, 5f);
+            playerBag.DropPeca(transform, 5f, true);
         } 
         Destroy(this.gameObject);
     }

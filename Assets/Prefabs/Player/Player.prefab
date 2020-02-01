@@ -269,7 +269,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 8
   Acceleration: 35
-  JumpHeight: 8
+  JumpHeight: 3
+  MaxJumpHeight: 10
   GroundMask:
     serializedVersion: 2
     m_Bits: 4352

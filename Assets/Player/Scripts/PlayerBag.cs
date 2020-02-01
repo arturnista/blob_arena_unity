@@ -27,7 +27,7 @@ public class PlayerBag : MonoBehaviour
         }
     }
 
-    public void DropPeca(Transform damager, float force)
+    public void DropPeca(Transform damager, float force, bool bulletHit = false)
     {
         CameraShaker.Instance.ShakeOnce(5f, 10f, .1f, .5f);
         PlayerMovement damagerMovement = damager.GetComponent<PlayerMovement>();
@@ -69,6 +69,18 @@ public class PlayerBag : MonoBehaviour
             help.GetComponent<Rigidbody2D>().AddForce(vec * 50f, ForceMode2D.Impulse);
             itens--;
         }
+
+        if (bulletHit)
+        {
+            StartCoroutine(StunCycle());
+        }
         
+    }
+
+    IEnumerator StunCycle()
+    {
+        movement.IsStopped = true;
+        yield return new WaitForSeconds(1f);
+        movement.IsStopped = false;
     }
 }

@@ -51,3 +51,4 @@ MonoBehaviour:
   - {fileID: 9142943224754588549, guid: 831b87d1ec1712d478e220422859efdd, type: 3}
   - {fileID: 9142943224754588549, guid: 151ffe48f86f0d64191c45da979bdf1c, type: 3}
   SpawnTime: 5
+  UICanvas: {fileID: 0}
