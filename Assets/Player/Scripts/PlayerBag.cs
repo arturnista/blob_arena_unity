@@ -9,9 +9,12 @@ public class PlayerBag : MonoBehaviour
     private int itens;
     public int Itens { get => itens; }
 
+    private PlayerMovement movement;
+
     void Start()
     {
         itens = 0;
+        movement = GetComponent<PlayerMovement>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,29 +30,43 @@ public class PlayerBag : MonoBehaviour
         }
     }
 
-    public void DropPeca(int side)//0 - esq || 1 - dir
+    public void DropPeca(Transform damager, float force)
     {
-        if(itens >0)
+        PlayerMovement damagerMovement = damager.GetComponent<PlayerMovement>();
+        Vector2 dir = (transform.position - damager.position).normalized;
+        Debug.Log(dir);
+
+        if (damagerMovement != null)
         {
-            if (side == 0)
-            {
-                GameObject help;
-                help = Instantiate(peca, transform.position + transform.up, Quaternion.identity);
-
-                Vector2 vec = new Vector2(Random.Range(-1.0f, 0.0f), Random.Range(0.5f, 1.0f));
-                help.GetComponent<Rigidbody2D>().AddForce(vec * 500);
-
-                itens--;
-            }
+            if(movement.IsGrounded && damagerMovement.IsGrounded)
+                movement.AddExtraVelocity(new Vector2(dir.x * force, Random.Range(0.5f, 1.0f) * force));
             else
-            {
-                GameObject help;
-                help = Instantiate(peca, transform.position + transform.up, Quaternion.identity);
-                Vector2 vec = new Vector2(Random.Range(0.0f, 1.0f), Random.Range(0.5f, 1.0f));
-                help.GetComponent<Rigidbody2D>().AddForce(vec * 500);
-                itens--;
+                movement.AddExtraVelocity(dir * force);
+        }
+        else
+        {
+            movement.AddExtraVelocity(dir * force);
+        }
 
-            }
+        if(itens <= 0) return;
+
+        if (dir.x > 0)
+        {
+            GameObject help;
+            help = Instantiate(peca, transform.position + transform.up, Quaternion.identity);
+
+            Vector2 vec = new Vector2(Random.Range(-1.0f, 0.0f), Random.Range(0.5f, 1.0f));
+            help.GetComponent<Rigidbody2D>().AddForce(vec * 500);
+
+            itens--;
+        }
+        else
+        {
+            GameObject help;
+            help = Instantiate(peca, transform.position + transform.up, Quaternion.identity);
+            Vector2 vec = new Vector2(Random.Range(0.0f, 1.0f), Random.Range(0.5f, 1.0f));
+            help.GetComponent<Rigidbody2D>().AddForce(vec * 500);
+            itens--;
         }
         
     }

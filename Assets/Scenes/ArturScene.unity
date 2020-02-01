@@ -2154,6 +2154,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3735910604765998913, guid: 254367874ef329d439523e753494f8c3,
+        type: 3}
+      propertyPath: WeaponsPrefab.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3735910604765998913, guid: 254367874ef329d439523e753494f8c3,
+        type: 3}
+      propertyPath: SpawnTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3735910604765998913, guid: 254367874ef329d439523e753494f8c3,
+        type: 3}
+      propertyPath: WeaponsPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 9142943224754588549, guid: 831b87d1ec1712d478e220422859efdd,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 254367874ef329d439523e753494f8c3, type: 3}
 --- !u!1001 &2904663154815949145
@@ -2166,12 +2182,12 @@ PrefabInstance:
     - target: {fileID: 2904663154805963521, guid: 8b21e9a00b7a6944985a4569f6b654d3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2904663154805963521, guid: 8b21e9a00b7a6944985a4569f6b654d3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 2904663154805963521, guid: 8b21e9a00b7a6944985a4569f6b654d3,
         type: 3}
@@ -2240,12 +2256,12 @@ PrefabInstance:
     - target: {fileID: 1703405211360476777, guid: 8816e9fde3bec9540bac3860e1eba1e4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.5
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 1703405211360476777, guid: 8816e9fde3bec9540bac3860e1eba1e4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 1703405211360476777, guid: 8816e9fde3bec9540bac3860e1eba1e4,
         type: 3}
