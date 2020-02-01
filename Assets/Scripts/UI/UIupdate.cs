@@ -20,7 +20,7 @@ public class UIupdate : MonoBehaviour
     {
         if(Npeca < 5)
         {
-            if (Player.GetComponent<PlayerBag>().itens > Npeca)
+            if (Player.GetComponent<PlayerBag>().Itens > Npeca)
             {
                 Pecas[Npeca].SetActive(true);
                 Npeca++;

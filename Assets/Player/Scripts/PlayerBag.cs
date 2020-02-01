@@ -7,7 +7,8 @@ public class PlayerBag : MonoBehaviour
     public GameObject peca;
 
     private int itens;
-    
+    public int Itens { get => itens; }
+
     void Start()
     {
         itens = 0;
