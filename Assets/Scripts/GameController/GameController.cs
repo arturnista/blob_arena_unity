@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour
     private PlayerBag[] players;
     private bool gameEnded;
 
+    public bool ControlScene;
+
     void Start()
     {
         main = this;
@@ -72,7 +74,10 @@ public class GameController : MonoBehaviour
         {
             if (player.Itens >= WinAmount)
             {
-                WinGame(player);
+                if(!ControlScene)
+                {
+                    WinGame(player);
+                }
             }
         }
     }
