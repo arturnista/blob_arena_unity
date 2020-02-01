@@ -16,13 +16,14 @@ public class Player : MonoBehaviour
     void Awake()
     {
         isAttacking = false;
+        isStopped = false;
         playerAttack = GetComponent<AttackScript>();
         playerWeapon = GetComponent<weaponScript>();
     }
 
     void Update()
     {
-        if (!isStopped) return;
+        if (isStopped) return;
         
         if (Schema.GetKeyDown(Schema.Attack))
         {

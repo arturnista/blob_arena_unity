@@ -71,7 +71,7 @@ public class AttackScript : MonoBehaviour
 
     IEnumerator ReadyCoroutine()
     {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.6f);
         SetReady();
     }
 
