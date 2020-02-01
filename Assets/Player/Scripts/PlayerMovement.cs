@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         moveDirection = Input.GetAxisRaw(inputSchema.HorizontalAxis);
-        if (moveDirection != 0) lookingDirection = moveDirection > 0 ? 1 : -1;
+        if (Mathf.Abs(moveDirection) > 0.4f) lookingDirection = moveDirection > 0 ? 1 : -1;
 
         if (inputSchema.GetKeyDown(inputSchema.Jump) && isGrounded) 
         {
@@ -71,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {   
+        isGrounded = false;
         Vector2 moveMotion = MovePlayer(Time.fixedDeltaTime, ref velocity);
         Vector2 extraMoveMotion = MovePlayer(Time.fixedDeltaTime, ref extraVelocity);
 
@@ -79,7 +80,6 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 MovePlayer(float deltaTime, ref Vector2 velocity)
     {
-        isGrounded = false;
         Vector2 deltaPosition = velocity * deltaTime;
 
         Vector2 vMove = Vector2.up * deltaPosition.y;

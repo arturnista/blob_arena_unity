@@ -7,6 +7,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2904663153515474798, guid: 8b21e9a00b7a6944985a4569f6b654d3,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.088113785
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904663153515474798, guid: 8b21e9a00b7a6944985a4569f6b654d3,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904663153515474798, guid: 8b21e9a00b7a6944985a4569f6b654d3,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2904663154805963521, guid: 8b21e9a00b7a6944985a4569f6b654d3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -71,7 +86,7 @@ PrefabInstance:
     - target: {fileID: 2904663154805963534, guid: 8b21e9a00b7a6944985a4569f6b654d3,
         type: 3}
       propertyPath: m_Name
-      value: Player_2
+      value: Player_2 Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b21e9a00b7a6944985a4569f6b654d3, type: 3}

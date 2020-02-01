@@ -24,18 +24,21 @@ public class weaponScript : MonoBehaviour
             isEquiped = true;
 
             Destroy(weapon.GetComponent<Rigidbody2D>());
-            Destroy(weapon.GetComponent<CircleCollider2D>());
-            Destroy(weapon.GetComponent<CircleCollider2D>());
+            foreach (var item in weapon.GetComponents<CircleCollider2D>())
+            {
+                Destroy(item);
+            }
         }
     }
 
     public void Shoot()
     {
         GameObject obj = weaponPos.GetChild(0).gameObject;
-        GameObject bullet = Instantiate(obj.GetComponent<Weapon>().BulletPrefab, spawnBulletPoint.position, Quaternion.identity) as GameObject;
+        Vector3 spawnPosition = spawnBulletPoint.position;
+        GameObject bullet = Instantiate(obj.GetComponent<Weapon>().BulletPrefab, spawnPosition, Quaternion.identity) as GameObject;
         
         Vector2 direction = (spawnBulletPoint.position - transform.position).normalized;
-        bullet.GetComponent<Rigidbody2D>().AddForce(direction * 20f, ForceMode2D.Impulse);
+        bullet.GetComponent<Rigidbody2D>().AddForce(direction * 30f, ForceMode2D.Impulse);
         isEquiped = false;
         
         Destroy(obj);        
