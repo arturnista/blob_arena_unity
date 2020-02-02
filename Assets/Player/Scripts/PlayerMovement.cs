@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private float maxJumpForce;
     private Vector2 gravity;
     private float gravityModifier;
+    public Animator anim;
 
     private new Rigidbody2D rigidbody;
     private float moveDirection;
@@ -34,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isStopped;
     public bool IsStopped { get => isStopped; set => isStopped = value; }
 
+    private Vector3 originalScale;
+
     protected ContactFilter2D contactFilter;
     protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
 
@@ -49,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         maxJumpForce = Mathf.Sqrt(MaxJumpHeight * 2f * -gravity.y);
         lookingDirection = 1f;
         gravityModifier = 1.3f;
+        originalScale = transform.localScale;
 
         contactFilter.useTriggers = false;
         contactFilter.SetLayerMask (GroundMask);
@@ -60,12 +64,22 @@ public class PlayerMovement : MonoBehaviour
         if (!isStopped)
         {
             moveDirection = Input.GetAxisRaw(inputSchema.HorizontalAxis);
+
+            if (moveDirection != 0 && isGrounded)
+            {
+                anim.SetBool("isWalking", true);
+            }
+            else
+            {
+                anim.SetBool("isWalking", false);
+            }
             if (Mathf.Abs(moveDirection) > 0.4f) lookingDirection = moveDirection > 0 ? 1 : -1;
 
             if (inputSchema.GetKeyDown(inputSchema.Jump) && (isGrounded || allowJumpTime > 0f)) 
             {
                 velocity.y = maxJumpForce;
                 allowJumpTime = 0f;
+                anim.SetTrigger("jumped");
             }
             else if (inputSchema.GetKeyUp(inputSchema.Jump) && velocity.y > jumpForce)
             {
@@ -88,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FlipSprite()
     {
-        transform.localScale = new Vector3(lookingDirection, 1f, 1f);
+        transform.localScale = new Vector3(originalScale.x * lookingDirection, originalScale.y, originalScale.z);
     }
 
     void FixedUpdate()

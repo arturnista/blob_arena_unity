@@ -10,6 +10,7 @@ TagManager:
   - Peca
   - weaponPoint
   - weapon
+  - animator
   layers:
   - Default
   - TransparentFX
@@ -58,4 +59,7 @@ TagManager:
     locked: 0
   - name: Weapons
     uniqueID: 4004325581
+    locked: 0
+  - name: Front_Ground
+    uniqueID: 501337007
     locked: 0
