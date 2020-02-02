@@ -6,10 +6,13 @@ public class CreditsPersonas : MonoBehaviour
 {
     
     private Animator animator;
+    public AudioClip Clip;
+    private AudioSource source;
 
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
+        source = GetComponent<AudioSource>();
     }
 
     public void OnMouseEnter()
@@ -25,6 +28,7 @@ public class CreditsPersonas : MonoBehaviour
     public void OnMouseDown()
     {
         animator.SetTrigger("tookDmg");
+        source.PlayOneShot(Clip);
     }
 
 }

@@ -7,6 +7,9 @@ using UnityEngine.EventSystems;
 public class PlayerSelect : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerEnterHandler, IPointerExitHandler
 {
 
+    public AudioClip Clip;
+    private AudioSource source;
+    
     private Animator animator;
     private SpriteRenderer[] spriteRenderers;
 
@@ -15,6 +18,7 @@ public class PlayerSelect : MonoBehaviour, ISelectHandler, IDeselectHandler, IPo
 
     void Awake()
     {
+        source = GetComponent<AudioSource>();
         animator = GetComponentInChildren<Animator>();
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
 
@@ -50,6 +54,7 @@ public class PlayerSelect : MonoBehaviour, ISelectHandler, IDeselectHandler, IPo
 
     void Select()
     {
+        source.PlayOneShot(Clip);
         animator.SetBool("isWalking", true);
         foreach (var spriteRenderer in spriteRenderers)
         {
