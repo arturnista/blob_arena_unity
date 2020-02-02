@@ -43,5 +43,10 @@ public class animationScript : MonoBehaviour
                 transform.GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = spritesBody[arrayCount];
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            anim.SetTrigger("tookDmg");
+        }
     }
 }
