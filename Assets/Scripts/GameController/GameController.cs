@@ -141,6 +141,7 @@ public class GameController : MonoBehaviour
         SetSprite(loserImage, loser);
 
         CanvasGroup group = UICanvas.GetComponent<CanvasGroup>();
+        group.interactable = false;
         float alpha = 0f;
 
         while (alpha < 1f)
@@ -149,6 +150,9 @@ public class GameController : MonoBehaviour
             alpha += 2f * Time.deltaTime;
             yield return null;
         }
+
+        yield return new WaitForSeconds(1f);
+        group.interactable = true;
 
     }
 
