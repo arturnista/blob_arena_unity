@@ -19,7 +19,6 @@ public class PlayerWeaponCollector : MonoBehaviour
         if (collision.tag == "weapon")
         {
             RaycastHit2D[] hits = Physics2D.LinecastAll(collision.transform.position, transform.position, GroundMask);
-            Debug.Log(hits.Length);
             if (hits.Length > 1) return;
 
             Transform weapon = collision.transform;
