@@ -25,13 +25,13 @@ TagManager:
   - 
   - 
   - Player
-  - 
+  - PlayerWeaponCollector
   - 
   - Peca
   - PecaCollider
   - 
   - 
-  - 
+  - Weapon
   - 
   - 
   - 

@@ -45,6 +45,7 @@ public class AttackScript : MonoBehaviour
 
     public void StartAttacking()
     {
+        if (!isReady) return;
         isCharging = true;
         movement.MoveSpeed = originalMoveSpeed / 2f;
     }
@@ -66,7 +67,12 @@ public class AttackScript : MonoBehaviour
         foreach ( Collider2D colliderHit in col)
         {
             if (colliderHit.gameObject == gameObject) continue;
-            colliderHit.gameObject.GetComponent<PlayerBag>().DropPeca(transform, force, true);
+            PlayerBag bag = colliderHit.gameObject.GetComponent<PlayerBag>();
+            bag.DropPeca(transform, force, true);
+            if (force >= maxForce)
+            {
+                bag.DropPeca(transform, force, true);
+            }
         }
 
         isReady = false;

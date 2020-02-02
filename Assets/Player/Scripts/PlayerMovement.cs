@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float JumpHeight;
     public float MaxJumpHeight;
     public LayerMask GroundMask;
+    public Collider2D Collider;
 
 
     private InputSchema inputSchema;
@@ -150,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
         float distance = move.magnitude;
         if (distance > minMoveDistance) 
         {
-            int count = rigidbody.Cast (move, contactFilter, hitBuffer, distance + shellRadius);
+            int count = Collider.Cast (move, contactFilter, hitBuffer, distance + shellRadius);
             
             for (int i = 0; i < count; i++) 
             {

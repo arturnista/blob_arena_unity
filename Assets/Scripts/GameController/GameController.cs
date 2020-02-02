@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     public int WinAmount;
     public GameObject PecaPrefab;
     [Header("Weapons")]
+    public int MaxWeapons;
     public GameObject[] WeaponsPrefab;
     public float SpawnTime;
     [Header("UI")]
@@ -27,6 +28,8 @@ public class GameController : MonoBehaviour
     public List<Transform> Right;    
     public Transform Mid;
     private int aux;
+
+    private int weaponsCreated;
 
     void Start()
     {
@@ -70,9 +73,18 @@ public class GameController : MonoBehaviour
         {
             yield return new WaitForSeconds(SpawnTime);
 
-            GameObject weapon = WeaponsPrefab[Random.Range(0, WeaponsPrefab.Length)];
-            Instantiate(weapon, GetRandomPoint(), Quaternion.identity);
+            if (weaponsCreated < MaxWeapons)
+            {
+                GameObject weapon = WeaponsPrefab[Random.Range(0, WeaponsPrefab.Length)];
+                Instantiate(weapon, GetRandomPoint(), Quaternion.identity);
+                weaponsCreated += 1;
+            }
         }
+    }
+
+    public void PickupWeapon()
+    {
+        weaponsCreated -= 1;
     }
 
     void LateUpdate()
