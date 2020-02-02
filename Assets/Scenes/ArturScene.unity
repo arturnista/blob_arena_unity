@@ -3269,6 +3269,21 @@ PrefabInstance:
       propertyPath: UICanvas
       value: 
       objectReference: {fileID: 596602785}
+    - target: {fileID: 8304050086105824036, guid: 254367874ef329d439523e753494f8c3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8363234139529598165, guid: 254367874ef329d439523e753494f8c3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957675298876703567, guid: 254367874ef329d439523e753494f8c3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 254367874ef329d439523e753494f8c3, type: 3}
 --- !u!1001 &2904663154815949145

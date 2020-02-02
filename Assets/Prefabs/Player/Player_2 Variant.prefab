@@ -83,6 +83,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_2 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2904663154805963534, guid: 8b21e9a00b7a6944985a4569f6b654d3,
+        type: 3}
+      propertyPath: m_TagString
+      value: p2
+      objectReference: {fileID: 0}
     - target: {fileID: 7487433973673281607, guid: 8b21e9a00b7a6944985a4569f6b654d3,
         type: 3}
       propertyPath: m_Sprite

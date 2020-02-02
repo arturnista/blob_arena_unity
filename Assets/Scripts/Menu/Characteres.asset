@@ -12,3 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60fd8b873c167284ebc3ab67536846ee, type: 3}
   m_Name: Characteres
   m_EditorClassIdentifier: 
+  Personas:
+  - {fileID: 21300000, guid: 2328d06956d38054f8cf28e57243642d, type: 3}
+  - {fileID: 21300000, guid: e4ca46f6437e4374d9976ffbae21bd59, type: 3}
+  - {fileID: 21300000, guid: 3a74810b04367f74b9446c464bdcd114, type: 3}
+  - {fileID: 21300000, guid: 3266fd7d6929a214f9485b4caceab629, type: 3}
+  - {fileID: 21300000, guid: 99a9561dc9f048b46b9ca781c8e69205, type: 3}
+  Player: 0000000000000000

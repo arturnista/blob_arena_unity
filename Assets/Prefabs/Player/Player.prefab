@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88cf34cb54d4e6841b47bf043388d654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: db4fc59af4a3064458425d9e561d47b0, type: 2}
+  config: {fileID: 0}
   Player: 0
 --- !u!212 &2904663153515474798
 SpriteRenderer:
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 4704409839098370983}
   m_Layer: 12
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: p1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -284,6 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb9f98b77540d34db3067f9d1edba02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selChar: {fileID: 11400000, guid: db4fc59af4a3064458425d9e561d47b0, type: 2}
+  spr: {fileID: 7487433973673281607}
   MoveSpeed: 8
   Acceleration: 35
   JumpHeight: 3
@@ -5265,6 +5267,12 @@ Transform:
 --- !u!95 &7487433973782571699 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5739796187809550856, guid: 25bade6cfbc27bb4dbf58f0eabc6d100,
+    type: 3}
+  m_PrefabInstance: {fileID: 2904663153877448891}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &7487433973673281607 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5739796187666133244, guid: 25bade6cfbc27bb4dbf58f0eabc6d100,
     type: 3}
   m_PrefabInstance: {fileID: 2904663153877448891}
   m_PrefabAsset: {fileID: 0}
