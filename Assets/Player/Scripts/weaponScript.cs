@@ -5,6 +5,7 @@ using UnityEngine;
 public class weaponScript : MonoBehaviour
 {
     public Transform weaponPos, spawnBulletPoint;
+    public Animator anim;
     private bool isEquiped;
     public bool IsEquiped { get => isEquiped; }
 
@@ -18,6 +19,8 @@ public class weaponScript : MonoBehaviour
         if (isEquiped) return;
         if (collision.tag == "weapon")
         {
+            
+
             Transform weapon = collision.transform;
             weapon.SetParent(weaponPos.transform);
             weapon.localPosition = Vector2.zero;
@@ -33,6 +36,8 @@ public class weaponScript : MonoBehaviour
 
     public void Shoot()
     {
+        anim.SetTrigger("atk");
+        
         GameObject obj = weaponPos.GetChild(0).gameObject;
         Vector3 spawnPosition = spawnBulletPoint.position;
         GameObject bullet = Instantiate(obj.GetComponent<Weapon>().BulletPrefab, spawnPosition, Quaternion.identity) as GameObject;
@@ -43,4 +48,5 @@ public class weaponScript : MonoBehaviour
         
         Destroy(obj);        
     }
+   
 }

@@ -48,5 +48,14 @@ public class animationScript : MonoBehaviour
         {
             anim.SetTrigger("tookDmg");
         }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            anim.SetBool("isCharging", true);
+        }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            anim.SetBool("isCharging", false);
+        }
     }
 }
