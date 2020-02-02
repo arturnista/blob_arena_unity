@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class Peca : MonoBehaviour
 {
-    
-    private new Collider2D collider;
-    void Awake()
-    {
-        collider = GetComponent<Collider2D>();
-    }
 
     public void DisableForTime()
     {
@@ -18,9 +12,9 @@ public class Peca : MonoBehaviour
 
     IEnumerator DisableCoroutine()
     {
-        collider.enabled = false;
-        yield return new WaitForSeconds(.2f);
-        collider.enabled = true;
+        gameObject.tag = "Untagged";
+        yield return new WaitForSeconds(.1f);
+        gameObject.tag = "Peca";
     }
 
 }
