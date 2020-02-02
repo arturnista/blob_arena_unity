@@ -25,7 +25,6 @@ public class PlayerBag : MonoBehaviour
     {
         Destroy(peca.gameObject);
         itens++;
-        Debug.Log(itens);
     }
 
     public void DropPeca(Transform damager, float force, bool shouldStun = false)
@@ -54,7 +53,7 @@ public class PlayerBag : MonoBehaviour
         }
         if(itens <= 0) return;
 
-        GameObject pecaCreated = Instantiate(peca, transform.position + (transform.up * 1.5f), Quaternion.identity);
+        GameObject pecaCreated = Instantiate(peca, transform.position + (transform.up * 2.0f), Quaternion.identity);
 
         Vector2 hitDirection;
         if (dir.x < 0)

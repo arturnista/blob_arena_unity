@@ -36,17 +36,21 @@ public class GameController : MonoBehaviour
         main = this;
         gameEnded = false;
         
-        UICanvas.gameObject.SetActive(false);
-
-        for(int i =0; i < 3; i++)
+        if(!ControlScene)
         {
-            aux = Random.Range(0, Left.Count);
-            Instantiate(PecaPrefab, Left[aux].position, Quaternion.identity);
-            Left.RemoveAt(aux);
+             UICanvas.gameObject.SetActive(false);
 
-            aux = Random.Range(0, Right.Count);
-            Instantiate(PecaPrefab, Right[aux].position, Quaternion.identity);
-            Right.RemoveAt(aux);
+             for(int i =0; i < 3; i++)
+             {
+                 aux = Random.Range(0, Left.Count);
+                 Instantiate(PecaPrefab, Left[aux].position, Quaternion.identity);
+                 Left.RemoveAt(aux);
+
+                 aux = Random.Range(0, Right.Count);
+                 Instantiate(PecaPrefab, Right[aux].position, Quaternion.identity);
+                 Right.RemoveAt(aux);
+             }
+
         }
 
         //Instantiate(PecaPrefab, Mid.position, Quaternion.identity);
