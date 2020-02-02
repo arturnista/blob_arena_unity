@@ -354,6 +354,22 @@ AnimationClip:
     path: Body/LegSprite (1)
     classID: 212
     script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: 539038240117342912, guid: ca5a6786dfc592643bca106c11f50079,
+        type: 3}
+    attribute: m_Sprite
+    path: Body/Eye (1)
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: -3095029833732734486, guid: ca5a6786dfc592643bca106c11f50079,
+        type: 3}
+    attribute: m_Sprite
+    path: Body/Eye (2)
+    classID: 212
+    script: {fileID: 0}
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -363,6 +379,20 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 77279612
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 3115644370
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 2459543057
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -462,6 +492,8 @@ AnimationClip:
     pptrCurveMapping:
     - {fileID: -2637650270422149261, guid: 469f210d7ba21b941ba99c187d653874, type: 3}
     - {fileID: -2637650270422149261, guid: 469f210d7ba21b941ba99c187d653874, type: 3}
+    - {fileID: 539038240117342912, guid: ca5a6786dfc592643bca106c11f50079, type: 3}
+    - {fileID: -3095029833732734486, guid: ca5a6786dfc592643bca106c11f50079, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -1583,7 +1615,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Body/Eye (2)
+    path: Body/LegSprite (1)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1593,7 +1625,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Body/Eye (2)
+    path: Body/LegSprite (1)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1603,7 +1635,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Body/Eye (2)
+    path: Body/LegSprite (1)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1733,7 +1765,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Body/LegSprite (1)
+    path: Body/Eye (2)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1743,7 +1775,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Body/LegSprite (1)
+    path: Body/Eye (2)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1753,7 +1785,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Body/LegSprite (1)
+    path: Body/Eye (2)
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
