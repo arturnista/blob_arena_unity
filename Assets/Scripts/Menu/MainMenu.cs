@@ -13,11 +13,11 @@ public class MainMenu : MonoBehaviour
 
     public void BackToMain()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Main");
     }
     public void GoToControl()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("Controls");
     }
 
     public void GoToGame()
@@ -27,17 +27,17 @@ public class MainMenu : MonoBehaviour
     
     public void GoToCredits()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene("Credit");
     }
 
     public void GoToSelectP1()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Chose1");
     }
 
     public void GoToSelectP2()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Chose2");
     }
 
 }
