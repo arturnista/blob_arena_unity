@@ -54,10 +54,9 @@ public class PlayerBag : MonoBehaviour
         {
             movement.AddExtraVelocity(dir * force);
         }
-
         if(itens <= 0) return;
 
-        GameObject pecaCreated = Instantiate(peca, transform.position + transform.up, Quaternion.identity);
+        GameObject pecaCreated = Instantiate(peca, transform.position + (transform.up * 1.5f), Quaternion.identity);
 
         Vector2 hitDirection;
         if (dir.x < 0)
