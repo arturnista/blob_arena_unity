@@ -13,16 +13,20 @@ public class PlayerBag : MonoBehaviour
     private Player player;
     private PlayerMovement movement;
     public Animator anim;
+    public AudioClip PickupClip;
+    private AudioSource source;
 
     void Start()
     {
         itens = 0;
         movement = GetComponent<PlayerMovement>();
         player = GetComponent<Player>();
+        source = GetComponent<AudioSource>();
     }
 
     public void CollectPeca(Transform peca)
     {
+        source.PlayOneShot(PickupClip);
         Destroy(peca.gameObject);
         itens++;
     }
