@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
+    public AudioSource source;
+
     public void Exit()
     {
         Application.Quit();
@@ -13,11 +15,11 @@ public class MainMenu : MonoBehaviour
 
     public void BackToMain()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene(0);
     }
     public void GoToControl()
     {
-        SceneManager.LoadScene("Controls");
+        SceneManager.LoadScene(3);
     }
 
     public void GoToGame()
@@ -27,17 +29,17 @@ public class MainMenu : MonoBehaviour
     
     public void GoToCredits()
     {
-        SceneManager.LoadScene("Credit");
+        SceneManager.LoadScene(4);
     }
 
     public void GoToSelectP1()
     {
-        SceneManager.LoadScene("Chose1");
+        SceneManager.LoadScene(1);
     }
 
     public void GoToSelectP2()
     {
-        SceneManager.LoadScene("Chose2");
+        SceneManager.LoadScene(2);
     }
 
 }
