@@ -150,10 +150,6 @@ public class GameController : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(5f);
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
     }
 
     void SetSprite(Image image, GameObject player)
@@ -161,6 +157,11 @@ public class GameController : MonoBehaviour
         int pos = player.tag == "p1" ? 0 : 1;
         PlayerMovement movement = player.GetComponent<PlayerMovement>();
         image.sprite = movement.selChar.Personas[movement.selChar.Player[pos]];
+    }
+
+    void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }
