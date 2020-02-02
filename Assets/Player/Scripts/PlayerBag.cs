@@ -25,7 +25,6 @@ public class PlayerBag : MonoBehaviour
     {
         Destroy(peca.gameObject);
         itens++;
-        Debug.Log(itens);
     }
 
     public void DropPeca(Transform damager, float force, bool shouldStun = false)
