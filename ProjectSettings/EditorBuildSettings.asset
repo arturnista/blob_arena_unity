@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Cenapakas/Splash.unity
+    guid: 2594c2c973a2c6b44863f7a9f08115ab
+  - enabled: 1
     path: Assets/Scenes/Cenapakas/Main.unity
     guid: dfbade2a573df3745a9a5847865fdb68
   - enabled: 1
