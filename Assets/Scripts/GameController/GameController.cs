@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
     public AudioSource MusicSource;
     public AudioClip FinalSfx;
     [Header("UI")]
+    public SelectCharacter SelCharacter;
     public Canvas UICanvas;
     public Sprite P1WinText;
     public Sprite P2WinText;
@@ -146,6 +147,23 @@ public class GameController : MonoBehaviour
 
         SetSprite(winnerImage, winner);
         SetSprite(loserImage, loser);
+
+        if (SelCharacter.Player[0] == SelCharacter.Player[1])
+        {
+            if (winner.tag == "p1")
+            {
+                UICanvas.transform.Find("Winner/BowTie").gameObject.SetActive(false);
+            }
+            else
+            {
+                UICanvas.transform.Find("Loser/BowTie").gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            UICanvas.transform.Find("Winner/BowTie").gameObject.SetActive(false);
+            UICanvas.transform.Find("Loser/BowTie").gameObject.SetActive(false);
+        }
 
         CanvasGroup group = UICanvas.GetComponent<CanvasGroup>();
         group.interactable = false;
