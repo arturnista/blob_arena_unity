@@ -38,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isStopped;
     public bool IsStopped { get => isStopped; set => isStopped = value; }
 
+    private Vector3 originalScale;
+
     protected ContactFilter2D contactFilter;
     protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
 
@@ -62,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         maxJumpForce = Mathf.Sqrt(MaxJumpHeight * 2f * -gravity.y);
         lookingDirection = 1f;
         gravityModifier = 1.3f;
+        originalScale = transform.localScale;
 
         contactFilter.useTriggers = false;
         contactFilter.SetLayerMask (GroundMask);
@@ -111,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FlipSprite()
     {
-        transform.localScale = new Vector3(lookingDirection, 1f, 1f);
+        transform.localScale = new Vector3(originalScale.x * lookingDirection, originalScale.y, originalScale.z);
     }
 
     void FixedUpdate()

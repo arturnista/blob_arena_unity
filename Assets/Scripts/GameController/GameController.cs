@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour
             Right.RemoveAt(aux);
         }
 
-        Instantiate(PecaPrefab, Mid.position, Quaternion.identity);
+        //Instantiate(PecaPrefab, Mid.position, Quaternion.identity);
 
         players = GameObject.FindObjectsOfType<PlayerBag>();
         StartCoroutine(SpawnWeaponCycle());
@@ -123,6 +123,8 @@ public class GameController : MonoBehaviour
             Camera.main.orthographicSize -= 3f * Time.deltaTime;
             yield return null;
         }
+
+        yield return new WaitForSeconds(1f);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
