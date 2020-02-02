@@ -153,6 +153,8 @@ MonoBehaviour:
   - {fileID: 9142943224754588549, guid: 917e1ec823c8a4943af73238ac4acdd2, type: 3}
   SpawnTime: 4
   UICanvas: {fileID: 0}
+  P1WinText: {fileID: 21300000, guid: e08cf79fafd473b4399c8625903e9e1d, type: 3}
+  P2WinText: {fileID: 21300000, guid: ceb5bb66abe59ad41b8540f7e019b1bd, type: 3}
   ControlScene: 0
   Left:
   - {fileID: 5682306802034127754}
