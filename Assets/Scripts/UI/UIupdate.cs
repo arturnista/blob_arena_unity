@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UIupdate : MonoBehaviour
 {
-    public GameObject Player;
+    public PlayerBag Player;
     public GameObject[] Pecas;
 
     private int Npeca;
@@ -18,20 +18,21 @@ public class UIupdate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Player == null) return;
         if(Npeca < 5)
         {
-            if (Player.GetComponent<PlayerBag>().Itens > Npeca)
+            if (Player.Itens > Npeca)
             {
                 Pecas[Npeca].SetActive(true);
                 Npeca++;
             }
 
-            if(Player.GetComponent<PlayerBag>().Itens < Npeca)
+            if(Player.Itens < Npeca)
             {
-                Pecas[Npeca].SetActive(false);
                 Npeca--;
+                Pecas[Npeca].SetActive(false);
             }
         }
-        
+
     }
 }
