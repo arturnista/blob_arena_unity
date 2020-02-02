@@ -8,6 +8,7 @@ public class WeaponBullet : MonoBehaviour
     public GameObject SplashPrefab;
     public GameObject HitPrefab;
 
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         PlayerBag playerBag = collision.gameObject.GetComponent<PlayerBag>();

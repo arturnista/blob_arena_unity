@@ -9,6 +9,9 @@ public class weaponScript : MonoBehaviour
     private bool isEquiped;
     public bool IsEquiped { get => isEquiped; }
 
+    public AudioClip atkSound;
+    private AudioSource source;
+
     void Start()
     {
         isEquiped = false;
@@ -17,6 +20,8 @@ public class weaponScript : MonoBehaviour
     public void Pickup(Transform weapon)
     {
         if (isEquiped) return;
+
+        source = GetComponent<AudioSource>();
 
         weapon.SetParent(weaponPos.transform);
         weapon.localPosition = Vector2.zero;
@@ -34,7 +39,10 @@ public class weaponScript : MonoBehaviour
     public void Shoot()
     {
         anim.SetTrigger("atk");
-        
+
+        source.clip = atkSound;
+        source.Play();
+
         GameObject obj = weaponPos.GetChild(0).gameObject;
         Vector3 spawnPosition = spawnBulletPoint.position;
         GameObject bullet = Instantiate(obj.GetComponent<Weapon>().BulletPrefab, spawnPosition, Quaternion.identity) as GameObject;

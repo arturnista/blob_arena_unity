@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
@@ -17,6 +18,8 @@ public class GameController : MonoBehaviour
     public float SpawnTime;
     [Header("UI")]
     public Canvas UICanvas;
+    public Sprite P1WinText;
+    public Sprite P2WinText;
 
     private PlayerBag[] players;
     private bool gameEnded;
@@ -108,7 +111,8 @@ public class GameController : MonoBehaviour
 
     void WinGame(PlayerBag winner)
     {
-        GameObject winnerGameobject = winner.gameObject;
+        GameObject loserGameObject = null;
+        GameObject winnerGameObject = winner.gameObject;
         gameEnded = true;
         foreach (var player in players)
         {
@@ -117,33 +121,51 @@ public class GameController : MonoBehaviour
             Destroy(player.GetComponent<AttackScript>());
             Destroy(player.GetComponent<PlayerBag>());
             Destroy(player.GetComponent<Player>());
+            if (winnerGameObject != player.gameObject)
+            {
+                loserGameObject = player.gameObject;
+            }
         }
 
-        UICanvas.gameObject.SetActive(true);
-
-        StartCoroutine(WinCycle(winnerGameobject));
+        StartCoroutine(WinCycle(winnerGameObject, loserGameObject));
     }
 
-    IEnumerator WinCycle(GameObject winner)
+    IEnumerator WinCycle(GameObject winner, GameObject loser)
     {
-        Vector2 origin = winner.transform.position;
-        Vector2 target = Vector2.zero;
+        UICanvas.gameObject.SetActive(true);
+        UICanvas.transform.Find("WinText").GetComponent<Image>().sprite = winner.tag == "p1" ? P1WinText : P2WinText;
+        Image loserImage = UICanvas.transform.Find("Loser/Sprite").GetComponent<Image>();
+        Image winnerImage = UICanvas.transform.Find("Winner/Sprite").GetComponent<Image>();
 
-        float time = Vector3.Distance(origin, target) * .5f;
+        SetSprite(winnerImage, winner);
+        SetSprite(loserImage, loser);
 
-        while (origin != target)
+        CanvasGroup group = UICanvas.GetComponent<CanvasGroup>();
+        group.interactable = false;
+        float alpha = 0f;
+
+        while (alpha < 1f)
         {
-            origin = Vector2.MoveTowards(origin, target, time * Time.deltaTime);
-            winner.transform.position = origin;
-
-            Camera.main.orthographicSize -= 3f * Time.deltaTime;
+            group.alpha = alpha;
+            alpha += 2f * Time.deltaTime;
             yield return null;
         }
 
         yield return new WaitForSeconds(1f);
+        group.interactable = true;
 
+    }
+
+    void SetSprite(Image image, GameObject player)
+    {
+        int pos = player.tag == "p1" ? 0 : 1;
+        PlayerMovement movement = player.GetComponent<PlayerMovement>();
+        image.sprite = movement.selChar.Personas[movement.selChar.Player[pos]];
+    }
+
+    void RestartGame()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
     }
 
 }

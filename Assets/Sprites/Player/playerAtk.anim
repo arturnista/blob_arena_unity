@@ -170,6 +170,22 @@ AnimationClip:
     path: Body/LegSprite (1)
     classID: 212
     script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: 539038240117342912, guid: ca5a6786dfc592643bca106c11f50079,
+        type: 3}
+    attribute: m_Sprite
+    path: Body/Eye (1)
+    classID: 212
+    script: {fileID: 0}
+  - curve:
+    - time: 0
+      value: {fileID: -3095029833732734486, guid: ca5a6786dfc592643bca106c11f50079,
+        type: 3}
+    attribute: m_Sprite
+    path: Body/Eye (2)
+    classID: 212
+    script: {fileID: 0}
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -179,6 +195,20 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 77279612
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 3115644370
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 2459543057
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -249,6 +279,8 @@ AnimationClip:
       isPPtrCurve: 0
     pptrCurveMapping:
     - {fileID: -5730315460715231451, guid: 469f210d7ba21b941ba99c187d653874, type: 3}
+    - {fileID: 539038240117342912, guid: ca5a6786dfc592643bca106c11f50079, type: 3}
+    - {fileID: -3095029833732734486, guid: ca5a6786dfc592643bca106c11f50079, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

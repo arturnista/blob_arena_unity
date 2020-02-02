@@ -19,8 +19,13 @@ public class AttackScript : MonoBehaviour
 
     private bool isReady;
 
+    public AudioClip atkSound;
+    private AudioSource source;
+
+
     void Start()
     {
+        source = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         movement = GetComponent<PlayerMovement>();
         isCharging = false;
@@ -74,6 +79,10 @@ public class AttackScript : MonoBehaviour
                 bag.DropPeca(transform, force, true);
             }
         }
+
+        source.clip = atkSound;
+        source.Play();
+
 
         isReady = false;
         StartCoroutine(ReadyCoroutine());
