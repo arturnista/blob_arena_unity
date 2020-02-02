@@ -7,7 +7,7 @@ using UnityEngine;
 public class SelectCharacter : ScriptableObject
 {
     public Sprite[] Personas;
-    public int[] Player = new int[2];
+    public int[] Player;
 
     public void SelectP1(int i)
     {

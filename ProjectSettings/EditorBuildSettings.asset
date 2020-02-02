@@ -9,11 +9,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Cenapakas/Main.unity
     guid: dfbade2a573df3745a9a5847865fdb68
   - enabled: 1
-    path: Assets/Scenes/ArturScene.unity
-    guid: 84a6eea679c930c4f836de4ae08043a9
+    path: Assets/Scenes/Cenapakas/Chose1.unity
+    guid: 5cccfc73a0ca1a54d86f84e0a73f3ee7
+  - enabled: 1
+    path: Assets/Scenes/Cenapakas/Chose2.unity
+    guid: 419061e1bf2660a4eab0f2c481754c7b
   - enabled: 1
     path: Assets/Scenes/Controls.unity
     guid: c42ad6350f0f81d40ae638226a387018
+  - enabled: 1
+    path: Assets/Scenes/Cenapakas/Credit.unity
+    guid: e268828f776647e49b597db9c81b5c58
+  - enabled: 1
+    path: Assets/Scenes/ArturScene.unity
+    guid: 84a6eea679c930c4f836de4ae08043a9
   - enabled: 1
     path: Assets/Scenes/CenaDoArtur.unity
     guid: 2cda990e2423bbf4892e6590ba056729
