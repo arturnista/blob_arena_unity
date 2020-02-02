@@ -16,6 +16,9 @@ public class GameController : MonoBehaviour
     public int MaxWeapons;
     public GameObject[] WeaponsPrefab;
     public float SpawnTime;
+    [Header("Musics")]
+    public AudioSource MusicSource;
+    public AudioClip FinalSfx;
     [Header("UI")]
     public Canvas UICanvas;
     public Sprite P1WinText;
@@ -111,6 +114,7 @@ public class GameController : MonoBehaviour
 
     void WinGame(PlayerBag winner)
     {
+        MusicSource.Stop();
         GameObject loserGameObject = null;
         GameObject winnerGameObject = winner.gameObject;
         gameEnded = true;
@@ -126,6 +130,9 @@ public class GameController : MonoBehaviour
                 loserGameObject = player.gameObject;
             }
         }
+
+        MusicSource.volume = .3f;
+        MusicSource.PlayOneShot(FinalSfx);
 
         StartCoroutine(WinCycle(winnerGameObject, loserGameObject));
     }

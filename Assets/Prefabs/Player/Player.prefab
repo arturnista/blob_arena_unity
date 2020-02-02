@@ -273,6 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   peca: {fileID: 245945895314062148, guid: 56c4015811a690e4f8bde3b7120f40c6, type: 3}
   anim: {fileID: 7487433973782571699}
+  PickupClip: {fileID: 8300000, guid: 24f804d329223234089d1668aaec3f34, type: 3}
 --- !u!114 &2904663154805963523
 MonoBehaviour:
   m_ObjectHideFlags: 0
