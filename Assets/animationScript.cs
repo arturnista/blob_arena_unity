@@ -43,5 +43,19 @@ public class animationScript : MonoBehaviour
                 transform.GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = spritesBody[arrayCount];
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            anim.SetTrigger("tookDmg");
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            anim.SetBool("isCharging", true);
+        }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            anim.SetBool("isCharging", false);
+        }
     }
 }

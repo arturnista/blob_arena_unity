@@ -15,6 +15,7 @@ public class AttackScript : MonoBehaviour
     private PlayerMovement movement;
     private InputSchema inputSchema;
     private float originalMoveSpeed;
+    public Animator anim;
 
     private bool isReady;
 
@@ -33,6 +34,8 @@ public class AttackScript : MonoBehaviour
     {
         if (isCharging)
         {
+            anim.SetBool("isCharging", true);
+
             if (currentForce <= maxForce)
             {
                 currentForce += chargeSpd * Time.deltaTime;
@@ -51,6 +54,7 @@ public class AttackScript : MonoBehaviour
         Attack(currentForce);
         currentForce = minForce;
         isCharging = false;
+        anim.SetBool("isCharging", false);
         movement.MoveSpeed = originalMoveSpeed;
     }
 

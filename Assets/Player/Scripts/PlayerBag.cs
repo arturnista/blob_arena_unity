@@ -12,6 +12,7 @@ public class PlayerBag : MonoBehaviour
 
     private Player player;
     private PlayerMovement movement;
+    public Animator anim;
 
     void Start()
     {
@@ -34,6 +35,9 @@ public class PlayerBag : MonoBehaviour
         CameraShaker.Instance.ShakeOnce(5f, 10f, .1f, .5f);
         PlayerMovement damagerMovement = damager.GetComponent<PlayerMovement>();
         Vector2 dir = (transform.position - damager.position).normalized;
+
+        anim.SetTrigger("tookDmg");
+
 
         if (damagerMovement != null)
         {

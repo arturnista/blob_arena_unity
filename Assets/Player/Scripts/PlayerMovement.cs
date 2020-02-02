@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private float maxJumpForce;
     private Vector2 gravity;
     private float gravityModifier;
+    public Animator anim;
 
     private new Rigidbody2D rigidbody;
     private float moveDirection;
@@ -60,12 +61,22 @@ public class PlayerMovement : MonoBehaviour
         if (!isStopped)
         {
             moveDirection = Input.GetAxisRaw(inputSchema.HorizontalAxis);
+
+            if (moveDirection != 0 && isGrounded)
+            {
+                anim.SetBool("isWalking", true);
+            }
+            else
+            {
+                anim.SetBool("isWalking", false);
+            }
             if (Mathf.Abs(moveDirection) > 0.4f) lookingDirection = moveDirection > 0 ? 1 : -1;
 
             if (inputSchema.GetKeyDown(inputSchema.Jump) && (isGrounded || allowJumpTime > 0f)) 
             {
                 velocity.y = maxJumpForce;
                 allowJumpTime = 0f;
+                anim.SetTrigger("jumped");
             }
             else if (inputSchema.GetKeyUp(inputSchema.Jump) && velocity.y > jumpForce)
             {
