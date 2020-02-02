@@ -15,7 +15,7 @@ public class WeaponBullet : MonoBehaviour
         {
             playerBag.DropPeca(transform, 5f, true);
             GameObject hitCreated = Instantiate(HitPrefab, playerBag.transform) as GameObject;
-            hitCreated.transform.localPosition = new Vector3(0f, .3f, 0f);
+            hitCreated.transform.localPosition = new Vector3(0f, .5f, 0f);
         }
         else
         {
