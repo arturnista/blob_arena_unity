@@ -21,13 +21,11 @@ public class PlayerBag : MonoBehaviour
         player = GetComponent<Player>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void CollectPeca(Transform peca)
     {
-        if(collision.tag == "Peca")
-        {
-            Destroy(collision.gameObject);
-            itens++;
-        }
+        Destroy(peca.gameObject);
+        itens++;
+        Debug.Log(itens);
     }
 
     public void DropPeca(Transform damager, float force, bool shouldStun = false)

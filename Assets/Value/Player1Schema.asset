@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Player1Schema
   m_EditorClassIdentifier: 
   HorizontalAxis: Horizontal_1
-  Jump: 200000005e010000
-  Attack: 6500000060010000
+  Jump: 770000005e010000
+  Attack: 2000000060010000

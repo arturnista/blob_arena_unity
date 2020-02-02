@@ -14,24 +14,21 @@ public class weaponScript : MonoBehaviour
         isEquiped = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void Pickup(Transform weapon)
     {
         if (isEquiped) return;
-        if (collision.tag == "weapon")
+
+        weapon.SetParent(weaponPos.transform);
+        weapon.localPosition = Vector2.zero;
+        isEquiped = true;
+
+        Destroy(weapon.GetComponent<Rigidbody2D>());
+        foreach (var item in weapon.GetComponents<CircleCollider2D>())
         {
-            
-
-            Transform weapon = collision.transform;
-            weapon.SetParent(weaponPos.transform);
-            weapon.localPosition = Vector2.zero;
-            isEquiped = true;
-
-            Destroy(weapon.GetComponent<Rigidbody2D>());
-            foreach (var item in weapon.GetComponents<CircleCollider2D>())
-            {
-                Destroy(item);
-            }
+            Destroy(item);
         }
+
+        GameController.main.PickupWeapon();
     }
 
     public void Shoot()
