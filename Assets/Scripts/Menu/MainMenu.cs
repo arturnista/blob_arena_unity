@@ -33,7 +33,7 @@ public class MainMenu : MonoBehaviour
 
     public void GoToGame()
     {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(7);
     }
     
     public void GoToCredits()
