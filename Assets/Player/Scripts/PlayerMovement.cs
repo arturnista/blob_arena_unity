@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public SelectCharacter selChar;
+    public SpriteRenderer spr;
 
     public float MoveSpeed;
     public float Acceleration;
     public float JumpHeight;
     public float MaxJumpHeight;
     public LayerMask GroundMask;
+
 
     private InputSchema inputSchema;
 
@@ -43,6 +46,15 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
+        if (gameObject.tag =="p1")
+        {
+            spr.sprite = selChar.Personas[selChar.Player[0]];
+        }
+        else
+        {
+            spr.sprite = selChar.Personas[selChar.Player[1]];
+        }
+        
         inputSchema = GetComponent<Player>().Schema;
         rigidbody = GetComponent<Rigidbody2D>();
         gravity = Physics2D.gravity;
