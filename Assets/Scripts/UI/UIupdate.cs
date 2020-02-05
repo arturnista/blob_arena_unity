@@ -1,37 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIupdate : MonoBehaviour
 {
     public PlayerBag Player;
-    public GameObject[] Pecas;
+    public Sprite[] Pecas;
 
-    private int Npeca;
+    private int lastPecas;
+    private Image startImage;
 
-    // Start is called before the first frame update
     void Start()
     {
-        Npeca = 0;
+        lastPecas = Player.Itens;
+        startImage = GetComponent<Image>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Player == null) return;
-        if(Npeca < 5)
+        if (lastPecas != Player.Itens)
         {
-            if (Player.Itens > Npeca)
-            {
-                Pecas[Npeca].SetActive(true);
-                Npeca++;
-            }
-
-            if(Player.Itens < Npeca)
-            {
-                Npeca--;
-                Pecas[Npeca].SetActive(false);
-            }
+            lastPecas = Player.Itens;
+            startImage.sprite = Pecas[Player.Itens];
         }
 
     }

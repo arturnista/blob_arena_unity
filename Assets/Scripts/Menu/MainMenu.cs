@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
-    public AudioSource source;
-
     public void Exit()
     {
         Application.Quit();
