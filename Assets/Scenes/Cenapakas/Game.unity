@@ -128,21 +128,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1173391976433533976, guid: c49c50dae0430c54f814261eafaadb56,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4869461126421908916, guid: c49c50dae0430c54f814261eafaadb56,
-        type: 3}
-      propertyPath: m_UsedByEffector
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7870912597071038099, guid: c49c50dae0430c54f814261eafaadb56,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 25.6
-      objectReference: {fileID: 0}
     - target: {fileID: 7870912597935073732, guid: c49c50dae0430c54f814261eafaadb56,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -450,7 +435,7 @@ GameObject:
   - component: {fileID: 992328987}
   - component: {fileID: 992328986}
   m_Layer: 0
-  m_Name: Musics
+  m_Name: Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1069,6 +1054,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3354093752485981985, guid: 3c4647c38de5f4a4581c4964c66c4ca9,
+        type: 3}
+      propertyPath: orthographic size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354093752485981985, guid: 3c4647c38de5f4a4581c4964c66c4ca9,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.5254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354093752485981985, guid: 3c4647c38de5f4a4581c4964c66c4ca9,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.5529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354093752485981985, guid: 3c4647c38de5f4a4581c4964c66c4ca9,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.23529413
+      objectReference: {fileID: 0}
     - target: {fileID: 3354093753169183817, guid: 3c4647c38de5f4a4581c4964c66c4ca9,
         type: 3}
       propertyPath: m_LocalPosition.x
