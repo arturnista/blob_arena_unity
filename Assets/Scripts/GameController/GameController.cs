@@ -123,7 +123,7 @@ public class GameController : MonoBehaviour
         {
             Destroy(player.GetComponent<Rigidbody2D>());
             Destroy(player.GetComponent<PlayerMovement>());
-            Destroy(player.GetComponent<AttackScript>());
+            Destroy(player.GetComponent<PlayerAttack>());
             Destroy(player.GetComponent<PlayerBag>());
             Destroy(player.GetComponent<Player>());
             if (winnerGameObject != player.gameObject)

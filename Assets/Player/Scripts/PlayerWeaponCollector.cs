@@ -7,11 +7,11 @@ public class PlayerWeaponCollector : MonoBehaviour
 
     public LayerMask GroundMask;
 
-    private weaponScript PlayerWeapon;
+    private PlayerWeapon PlayerWeapon;
 
     void Awake()
     {
-        PlayerWeapon = GetComponentInParent<weaponScript>();
+        PlayerWeapon = GetComponentInParent<PlayerWeapon>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

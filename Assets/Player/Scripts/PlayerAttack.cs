@@ -2,35 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackScript : MonoBehaviour
+public class PlayerAttack : MonoBehaviour
 {
+    public float MinForce;
+    public float MaxForce;
+    public float ChargeSpeed;
+    public float atkRadius;
+    public Transform AttackReference;
+    public AudioClip AttackSound;
     public LayerMask PlayerMask;
 
-    public float minForce, maxForce, currentForce, chargeSpd;
-    bool isCharging;
-    Rigidbody2D rb;
-    bool isP1;
-    public float atkRadius;
-    public Transform atkOrigin;
-    private PlayerMovement movement;
-    private InputSchema inputSchema;
     private float originalMoveSpeed;
-    public Animator anim;
+    private float currentForce;
 
     private bool isReady;
+    private bool isCharging;
 
-    public AudioClip atkSound;
+    private Animator animator;
+    private new Rigidbody2D rigidbody2D;
+    private PlayerMovement movement;
+    private InputSchema inputSchema;
     private AudioSource source;
 
 
     void Start()
     {
         source = GetComponent<AudioSource>();
-        rb = GetComponent<Rigidbody2D>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
         movement = GetComponent<PlayerMovement>();
-        isCharging = false;
-        currentForce = minForce;
+        animator = GetComponentInChildren<Animator>();
         inputSchema = GetComponent<Player>().Schema;
+
+        isCharging = false;
+        currentForce = MinForce;
         originalMoveSpeed = movement.MoveSpeed;
         isReady = true;
     }
@@ -39,11 +43,11 @@ public class AttackScript : MonoBehaviour
     {
         if (isCharging)
         {
-            anim.SetBool("isCharging", true);
+            animator.SetBool("isCharging", true);
 
-            if (currentForce <= maxForce)
+            if (currentForce <= MaxForce)
             {
-                currentForce += chargeSpd * Time.deltaTime;
+                currentForce += ChargeSpeed * Time.deltaTime;
             }
         }
     }
@@ -58,29 +62,29 @@ public class AttackScript : MonoBehaviour
     public void StopAttacking()
     {
         Attack(currentForce);
-        currentForce = minForce;
+        currentForce = MinForce;
         isCharging = false;
-        anim.SetBool("isCharging", false);
+        animator.SetBool("isCharging", false);
         movement.MoveSpeed = originalMoveSpeed;
     }
 
     public void Attack(float force)
     {
         if (!isReady) return;
-        Collider2D[] col = Physics2D.OverlapCircleAll(atkOrigin.position, atkRadius, PlayerMask);
+        Collider2D[] col = Physics2D.OverlapCircleAll(AttackReference.position, atkRadius, PlayerMask);
 
         foreach ( Collider2D colliderHit in col)
         {
             if (colliderHit.gameObject == gameObject) continue;
             PlayerBag bag = colliderHit.gameObject.GetComponent<PlayerBag>();
             bag.DropPeca(transform, force, true);
-            if (force >= maxForce)
+            if (force >= MaxForce)
             {
                 bag.DropPeca(transform, force, true);
             }
         }
 
-        source.clip = atkSound;
+        source.clip = AttackSound;
         source.Play();
 
 
@@ -102,6 +106,6 @@ public class AttackScript : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(atkOrigin.position, atkRadius);
+        Gizmos.DrawWireSphere(AttackReference.position, atkRadius);
     }
 }

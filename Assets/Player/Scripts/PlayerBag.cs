@@ -84,7 +84,9 @@ public class PlayerBag : MonoBehaviour
     {
         movement.IsStopped = true;
         player.IsStopped = true;
+        
         yield return new WaitForSeconds(.5f);
+        
         movement.IsStopped = false;
         player.IsStopped = false;
     }

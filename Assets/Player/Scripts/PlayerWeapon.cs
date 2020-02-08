@@ -2,15 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class weaponScript : MonoBehaviour
+public class PlayerWeapon : MonoBehaviour
 {
-    public Transform weaponPos, spawnBulletPoint;
-    public Animator anim;
+    public Transform WeaponReference;
+    public Transform SpawnBulletPoint;
+    
+    private Animator animator;
+
     private bool isEquiped;
     public bool IsEquiped { get => isEquiped; }
 
     public AudioClip atkSound;
     private AudioSource source;
+
+    void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
 
     void Start()
     {
@@ -23,7 +31,7 @@ public class weaponScript : MonoBehaviour
 
         source = GetComponent<AudioSource>();
 
-        weapon.SetParent(weaponPos.transform);
+        weapon.SetParent(WeaponReference.transform);
         weapon.localPosition = Vector2.zero;
         isEquiped = true;
 
@@ -38,16 +46,16 @@ public class weaponScript : MonoBehaviour
 
     public void Shoot()
     {
-        anim.SetTrigger("atk");
+        animator.SetTrigger("atk");
 
         source.clip = atkSound;
         source.Play();
 
-        GameObject obj = weaponPos.GetChild(0).gameObject;
-        Vector3 spawnPosition = spawnBulletPoint.position;
+        GameObject obj = WeaponReference.GetChild(0).gameObject;
+        Vector3 spawnPosition = SpawnBulletPoint.position;
         GameObject bullet = Instantiate(obj.GetComponent<Weapon>().BulletPrefab, spawnPosition, Quaternion.identity) as GameObject;
         
-        Vector2 direction = (spawnBulletPoint.position - transform.position).normalized;
+        Vector2 direction = (SpawnBulletPoint.position - transform.position).normalized;
         bullet.GetComponent<Rigidbody2D>().AddForce(direction * 30f, ForceMode2D.Impulse);
         isEquiped = false;
         

@@ -6,8 +6,8 @@ public class Player : MonoBehaviour
 {
     public InputSchema Schema;
 
-    private AttackScript playerAttack;
-    private weaponScript playerWeapon;
+    private PlayerAttack playerAttack;
+    private PlayerWeapon playerWeapon;
     private bool isAttacking;
 
     private bool isStopped;
@@ -17,8 +17,8 @@ public class Player : MonoBehaviour
     {
         isAttacking = false;
         isStopped = false;
-        playerAttack = GetComponent<AttackScript>();
-        playerWeapon = GetComponent<weaponScript>();
+        playerAttack = GetComponent<PlayerAttack>();
+        playerWeapon = GetComponent<PlayerWeapon>();
     }
 
     void Update()
