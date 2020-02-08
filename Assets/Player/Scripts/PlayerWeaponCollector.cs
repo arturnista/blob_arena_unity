@@ -16,7 +16,7 @@ public class PlayerWeaponCollector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "weapon")
+        if (collision.tag == Tags.WEAPON)
         {
             RaycastHit2D[] hits = Physics2D.LinecastAll(collision.transform.position, transform.position, GroundMask);
             if (hits.Length > 1) return;

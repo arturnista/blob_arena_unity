@@ -15,7 +15,7 @@ public class PlayerPecaCollector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Peca")
+        if (collision.tag == Tags.STAR_PEACE)
         {
             RaycastHit2D[] hits = Physics2D.LinecastAll(collision.transform.position, transform.position, GroundMask);
             if (hits.Length > 0) return;

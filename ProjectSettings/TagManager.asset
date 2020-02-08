@@ -4,14 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - p2
-  - p1
-  - floor
-  - Peca
-  - weaponPoint
-  - weapon
-  - animator
-  - canvasTie
+  - Player1
+  - Player2
+  - Weapon
+  - StarPeace
   layers:
   - Default
   - TransparentFX

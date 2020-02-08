@@ -12,9 +12,9 @@ public class Peca : MonoBehaviour
 
     IEnumerator DisableCoroutine()
     {
-        gameObject.tag = "Untagged";
+        gameObject.tag = Tags.UNTAGGED;
         yield return new WaitForSeconds(.1f);
-        gameObject.tag = "Peca";
+        gameObject.tag = Tags.STAR_PEACE;
     }
 
 }

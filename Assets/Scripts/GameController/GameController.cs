@@ -141,7 +141,7 @@ public class GameController : MonoBehaviour
     IEnumerator WinCycle(GameObject winner, GameObject loser)
     {
         UICanvas.gameObject.SetActive(true);
-        UICanvas.transform.Find("WinText").GetComponent<Image>().sprite = winner.tag == "p1" ? P1WinText : P2WinText;
+        UICanvas.transform.Find("WinText").GetComponent<Image>().sprite = winner.tag == Tags.PLAYER1 ? P1WinText : P2WinText;
         Image loserImage = UICanvas.transform.Find("Loser/Sprite").GetComponent<Image>();
         Image winnerImage = UICanvas.transform.Find("Winner/Sprite").GetComponent<Image>();
 
@@ -150,7 +150,7 @@ public class GameController : MonoBehaviour
 
         if (SelCharacter.Player[0] == SelCharacter.Player[1])
         {
-            if (winner.tag == "p1")
+            if (winner.tag == Tags.PLAYER1)
             {
                 UICanvas.transform.Find("Winner/BowTie").gameObject.SetActive(false);
             }
@@ -183,9 +183,9 @@ public class GameController : MonoBehaviour
 
     void SetSprite(Image image, GameObject player)
     {
-        int pos = player.tag == "p1" ? 0 : 1;
-        PlayerMovement movement = player.GetComponent<PlayerMovement>();
-        image.sprite = movement.selChar.Personas[movement.selChar.Player[pos]];
+        int pos = player.tag == Tags.PLAYER1 ? 0 : 1;
+        PlayerChangeSprite movement = player.GetComponent<PlayerChangeSprite>();
+        image.sprite = movement.SelectCharacter.Personas[movement.SelectCharacter.Player[pos]];
     }
 
     void RestartGame()
