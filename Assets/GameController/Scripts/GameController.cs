@@ -185,7 +185,7 @@ public class GameController : MonoBehaviour
     {
         int pos = player.tag == Tags.PLAYER1 ? 0 : 1;
         PlayerChangeSprite movement = player.GetComponent<PlayerChangeSprite>();
-        image.sprite = movement.SelectCharacter.Personas[movement.SelectCharacter.Player[pos]];
+        image.sprite = movement.SelectCharacter.GetPlayerSprite(pos);
     }
 
     void RestartGame()

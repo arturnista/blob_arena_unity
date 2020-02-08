@@ -69,7 +69,6 @@ public class PlayerBag : MonoBehaviour
             hitDirection = new Vector2(Random.Range(0.0f, 1.0f), Random.Range(0.5f, 1.0f));
         }
 
-        pecaCreated.GetComponent<Peca>().DisableForTime();
         pecaCreated.GetComponent<Rigidbody2D>().AddForce(hitDirection * 50f, ForceMode2D.Impulse);
         itens--;
 

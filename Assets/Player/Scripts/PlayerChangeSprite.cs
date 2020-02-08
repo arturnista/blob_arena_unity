@@ -12,11 +12,11 @@ public class PlayerChangeSprite : MonoBehaviour
     {
         if (gameObject.tag == Tags.PLAYER1)
         {
-            BodySpriteRenderer.sprite = SelectCharacter.Personas[SelectCharacter.Player[0]];
+            BodySpriteRenderer.sprite = SelectCharacter.GetPlayerSprite(0);
         }
         else
         {
-            BodySpriteRenderer.sprite = SelectCharacter.Personas[SelectCharacter.Player[1]];
+            BodySpriteRenderer.sprite = SelectCharacter.GetPlayerSprite(1);
         }    
     }
     

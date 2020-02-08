@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Peca : MonoBehaviour
+public class StarPeace : MonoBehaviour
 {
 
-    public void DisableForTime()
+    void Start()
     {
         StartCoroutine(DisableCoroutine());
     }
