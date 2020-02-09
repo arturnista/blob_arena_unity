@@ -43,13 +43,14 @@ public class PlayerAttack : MonoBehaviour
     {
         if (isCharging)
         {
-            animator.SetBool("isCharging", true);
+            animator.SetBool("isCharging", isCharging);
 
             if (currentForce <= MaxForce)
             {
                 currentForce += ChargeSpeed * Time.deltaTime;
             }
         }
+        Debug.Log("IS CHARGING: " + isCharging);
     }
 
     public void StartAttacking()
@@ -61,10 +62,11 @@ public class PlayerAttack : MonoBehaviour
 
     public void StopAttacking()
     {
+        if (!isReady) return;
         Attack(currentForce);
         currentForce = MinForce;
         isCharging = false;
-        animator.SetBool("isCharging", false);
+        animator.SetBool("isCharging", isCharging);
         movement.MoveSpeed = originalMoveSpeed;
     }
 
@@ -95,7 +97,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator ReadyCoroutine()
     {
         yield return new WaitForSeconds(.6f);
-        SetReady();
+        if(!isReady) SetReady();
     }
 
     public void SetReady()

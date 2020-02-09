@@ -9,6 +9,7 @@ public class InputSchema : ScriptableObject
     public string HorizontalAxis;
     public KeyCode[] Jump;
     public KeyCode[] Attack;
+    public KeyCode[] Dash;
 
     public bool GetKeyDown(KeyCode[] keys)
     {

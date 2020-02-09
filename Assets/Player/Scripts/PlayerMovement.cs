@@ -43,6 +43,10 @@ public class PlayerMovement : MonoBehaviour
     protected const float minMoveDistance = 0.001f;
     protected const float shellRadius = 0.01f;
 
+    public float dashSpd;
+    private bool isDashing;
+    public float dashTime;
+
     void Awake()
     {
         
@@ -58,6 +62,9 @@ public class PlayerMovement : MonoBehaviour
         contactFilter.useTriggers = false;
         contactFilter.SetLayerMask (GroundMask);
         contactFilter.useLayerMask = true;
+
+        isDashing = false;
+
     }
 
     void Update()
@@ -75,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetBool("isWalking", false);
             }
             if (Mathf.Abs(moveDirection) > 0.4f) lookingDirection = moveDirection > 0 ? 1 : -1;
+            
 
             if (inputSchema.GetKeyDown(inputSchema.Jump) && (isGrounded || allowJumpTime > 0f)) 
             {
@@ -99,6 +107,17 @@ public class PlayerMovement : MonoBehaviour
         extraVelocity = Vector2.MoveTowards(extraVelocity, Vector2.zero, rigidbody.drag * Time.deltaTime);
 
         FlipSprite();
+
+        //Debug.Log("Input Dash: " + inputSchema.GetKeyDown( inputSchema.Dash));
+        if (inputSchema.GetKeyDown( inputSchema.Dash))
+            StartCoroutine(changeDashState(dashTime));
+
+        if (isDashing)
+        {
+            transform.position = new Vector2((transform.position.x + dashSpd) * lookingDirection, transform.position.y);
+        }
+        Debug.Log("LD: " + lookingDirection);
+        Debug.Log("MD: " + moveDirection);
     }
 
     void FlipSprite()
@@ -171,4 +190,10 @@ public class PlayerMovement : MonoBehaviour
         extraVelocity += velocity;
     }
 
+    private IEnumerator changeDashState(float waitTime)
+    {
+        isDashing = gameObject.GetComponent<TrailRenderer>().enabled = true;
+        yield return new WaitForSeconds(waitTime);
+        isDashing = gameObject.GetComponent<TrailRenderer>().enabled = false;
+    }
 }
