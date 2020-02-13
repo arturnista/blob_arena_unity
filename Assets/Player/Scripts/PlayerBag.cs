@@ -37,6 +37,15 @@ public class PlayerBag : MonoBehaviour
         PlayerMovement damagerMovement = damager.GetComponent<PlayerMovement>();
         Vector2 dir = (transform.position - damager.position).normalized;
 
+
+        if(anim.GetBool("isCharging"))
+        {
+            anim.SetBool("isCharging", false);
+            GetComponent<PlayerAttack>().changeChargeState();
+        }
+        if(GetComponent<PlayerAttack>().IsReady)
+            GetComponent<PlayerAttack>().IsReady = false;
+
         anim.SetTrigger("tookDmg");
 
 

@@ -16,6 +16,7 @@ public class PlayerAttack : MonoBehaviour
     private float currentForce;
 
     private bool isReady;
+    public bool IsReady { get => isReady ; set => isReady = value; }
     private bool isCharging;
 
     private Animator animator;
@@ -51,6 +52,13 @@ public class PlayerAttack : MonoBehaviour
             }
         }
         Debug.Log("IS CHARGING: " + isCharging);
+
+        if(!isReady)
+        {
+            StartCoroutine(ReadyCoroutine());
+            currentForce = MinForce;
+            GetComponent<Player>().IsAttacking = false;
+        }
     }
 
     public void StartAttacking()
@@ -91,7 +99,7 @@ public class PlayerAttack : MonoBehaviour
 
 
         isReady = false;
-        StartCoroutine(ReadyCoroutine());
+        
     }
 
     IEnumerator ReadyCoroutine()
@@ -104,7 +112,15 @@ public class PlayerAttack : MonoBehaviour
     {
         isReady = true;
     }
+    public void changeReadyState()
+    {
+        isReady = !isReady;
+    }
 
+    public void changeChargeState()
+    {
+        isCharging = !isCharging;
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;

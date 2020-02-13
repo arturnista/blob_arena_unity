@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private PlayerAttack playerAttack;
     private PlayerWeapon playerWeapon;
     private bool isAttacking;
+    public bool IsAttacking { get => isAttacking ; set => isAttacking = value ; }
 
     private bool isStopped;
     public bool IsStopped { get => isStopped; set => isStopped = value; }
