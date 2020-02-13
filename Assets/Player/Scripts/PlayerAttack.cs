@@ -112,10 +112,7 @@ public class PlayerAttack : MonoBehaviour
     {
         isReady = true;
     }
-    public void changeReadyState()
-    {
-        isReady = !isReady;
-    }
+    
 
     public void changeChargeState()
     {
