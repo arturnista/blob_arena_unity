@@ -8,9 +8,11 @@ public class PlayerAttack : MonoBehaviour
     public float MaxForce;
     public float ChargeSpeed;
     public float atkRadius;
+    public float deflectHeight, deflectWidth;
     public Transform AttackReference;
     public AudioClip AttackSound;
     public LayerMask PlayerMask;
+    public LayerMask BulletMask;
 
     private float originalMoveSpeed;
     private float currentForce;
@@ -51,14 +53,15 @@ public class PlayerAttack : MonoBehaviour
                 currentForce += ChargeSpeed * Time.deltaTime;
             }
         }
-        Debug.Log("IS CHARGING: " + isCharging);
-
+        else
+            movement.MoveSpeed = originalMoveSpeed;
         if(!isReady)
         {
             StartCoroutine(ReadyCoroutine());
             currentForce = MinForce;
             GetComponent<Player>().IsAttacking = false;
         }
+
     }
 
     public void StartAttacking()
@@ -71,6 +74,7 @@ public class PlayerAttack : MonoBehaviour
     public void StopAttacking()
     {
         if (!isReady) return;
+        DeflectBullet(currentForce);
         Attack(currentForce);
         currentForce = MinForce;
         isCharging = false;
@@ -88,6 +92,22 @@ public class PlayerAttack : MonoBehaviour
             if (colliderHit.gameObject == gameObject) continue;
             PlayerBag bag = colliderHit.gameObject.GetComponent<PlayerBag>();
             bag.DropPeca(transform, force, true);
+
+            if (colliderHit.tag == "Bullet")
+            {
+                Debug.Log ("Acertou");
+
+                int whichPlayer = 1;
+                if(gameObject.tag == "Player1")
+                {
+                    whichPlayer = 2;
+                }
+
+                GameObject opponent = GameObject.FindGameObjectWithTag("Player" + whichPlayer);
+                Vector2 direction = (transform.position - opponent.transform.position).normalized;
+                colliderHit.GetComponent<Rigidbody2D>().AddForce(direction * 30f, ForceMode2D.Impulse);
+            }
+
             if (force >= MaxForce)
             {
                 bag.DropPeca(transform, force, true);
@@ -100,6 +120,28 @@ public class PlayerAttack : MonoBehaviour
 
         isReady = false;
         
+    }
+
+
+    public void DeflectBullet(float force)
+    {
+        if (!isReady) return;
+        Collider2D[] col = Physics2D.OverlapBoxAll(AttackReference.position, new Vector2(deflectWidth, deflectHeight), 0,BulletMask);
+
+        foreach ( Collider2D colliderHit in col)
+        {
+
+            int whichPlayer = 1;
+            if(gameObject.tag == "Player1")
+            {
+                 whichPlayer = 2;
+            }
+
+            GameObject opponent = GameObject.FindGameObjectWithTag("Player" + whichPlayer);
+            Vector2 direction = (transform.position - opponent.transform.position).normalized;
+            colliderHit.GetComponent<Rigidbody2D>().AddForce(new Vector2(-direction.x * (force + 60f), force), ForceMode2D.Impulse);
+
+        }
     }
 
     IEnumerator ReadyCoroutine()
@@ -122,5 +164,7 @@ public class PlayerAttack : MonoBehaviour
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(AttackReference.position, atkRadius);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(AttackReference.position, new Vector2(deflectWidth, deflectHeight));
     }
 }

@@ -200,7 +200,7 @@ MonoBehaviour:
     m_Bits: 4352
   Collider: {fileID: 2904663154805963524}
   anim: {fileID: 7487433973782571699}
-  dashSpd: 1.5
+  dashSpd: 1
   dashTime: 0.1
 --- !u!114 &2325246446478724789
 MonoBehaviour:
@@ -231,12 +231,17 @@ MonoBehaviour:
   MinForce: 5
   MaxForce: 15
   ChargeSpeed: 7
-  atkRadius: 0.9
+  atkRadius: 1
+  deflectHeight: 2
+  deflectWidth: 3
   AttackReference: {fileID: 2904663154179936177}
   AttackSound: {fileID: 8300000, guid: f8e6215fe8297984c99787b60cb6a4ee, type: 3}
   PlayerMask:
     serializedVersion: 2
     m_Bits: 4096
+  BulletMask:
+    serializedVersion: 2
+    m_Bits: 1048576
 --- !u!114 &4704409839098370983
 MonoBehaviour:
   m_ObjectHideFlags: 0

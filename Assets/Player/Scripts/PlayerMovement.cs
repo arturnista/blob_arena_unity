@@ -55,7 +55,10 @@ public class PlayerMovement : MonoBehaviour
         gravity = Physics2D.gravity;
         jumpForce = Mathf.Sqrt(JumpHeight * 2f * -gravity.y);
         maxJumpForce = Mathf.Sqrt(MaxJumpHeight * 2f * -gravity.y);
-        lookingDirection = 1f;
+        if(gameObject.tag == "Player1")
+            lookingDirection = 1f;
+        else
+            lookingDirection = -1f;
         gravityModifier = 1.3f;
         originalScale = transform.localScale;
 

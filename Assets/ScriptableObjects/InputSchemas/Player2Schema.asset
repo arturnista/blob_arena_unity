@@ -15,3 +15,4 @@ MonoBehaviour:
   HorizontalAxis: Horizontal_2
   Jump: 1101000072010000
   Attack: 7000000074010000
+  Dash: 6f00000079010000

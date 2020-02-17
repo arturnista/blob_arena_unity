@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4673132939875118832}
   - component: {fileID: 497133985381934394}
   - component: {fileID: 7356247589560427719}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: EggBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6342657700233847463}
   - component: {fileID: 3217114259363398420}
-  m_Layer: 8
+  m_Layer: 20
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6614698138351976863}
   - component: {fileID: 7480456592627354867}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
