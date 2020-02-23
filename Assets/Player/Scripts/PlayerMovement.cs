@@ -45,7 +45,10 @@ public class PlayerMovement : MonoBehaviour
 
     public float dashSpd;
     private bool isDashing;
+    private bool canDash;
     public float dashTime;
+    GameObject [] platforms;
+    public float platformsOffset;
 
     void Awake()
     {
@@ -67,6 +70,9 @@ public class PlayerMovement : MonoBehaviour
         contactFilter.useLayerMask = true;
 
         isDashing = false;
+        canDash = true;
+
+        platforms = GameObject.FindGameObjectsWithTag("Platform");
 
     }
 
@@ -84,7 +90,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 anim.SetBool("isWalking", false);
             }
-            if (Mathf.Abs(moveDirection) > 0.4f) lookingDirection = moveDirection > 0 ? 1 : -1;
+            if (!isDashing)
+                if (Mathf.Abs(moveDirection) > 0.4f) lookingDirection = moveDirection > 0 ? 1 : -1;
             
 
             if (inputSchema.GetKeyDown(inputSchema.Jump) && (isGrounded || allowJumpTime > 0f)) 
@@ -111,16 +118,24 @@ public class PlayerMovement : MonoBehaviour
 
         FlipSprite();
 
-        //Debug.Log("Input Dash: " + inputSchema.GetKeyDown( inputSchema.Dash));
-        if (inputSchema.GetKeyDown( inputSchema.Dash))
-            StartCoroutine(changeDashState(dashTime));
-
-        if (isDashing)
+        
+        if (inputSchema.GetKeyDown( inputSchema.Dash) && canDash && !GetComponent<PlayerAttack>().IsCharging)
         {
-            transform.position = new Vector2((transform.position.x + dashSpd) * lookingDirection, transform.position.y);
+            canDash = false;
+            StartCoroutine(changeDashState(dashTime));
         }
+       if (isGrounded)
+       {
+           canDash = true;
+       }
+
+
         Debug.Log("LD: " + lookingDirection);
         Debug.Log("MD: " + moveDirection);
+
+        
+        anim.SetBool("isGrounded", isGrounded);
+        anim.SetBool("isDashing", isDashing);
     }
 
     void FlipSprite()
@@ -131,10 +146,17 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {   
         isGrounded = false;
-        Vector2 moveMotion = MovePlayer(Time.fixedDeltaTime, ref velocity);
-        Vector2 extraMoveMotion = MovePlayer(Time.fixedDeltaTime, ref extraVelocity);
+        if (!isDashing)
+        {
+            Vector2 moveMotion = MovePlayer(Time.fixedDeltaTime, ref velocity);
+            Vector2 extraMoveMotion = MovePlayer(Time.fixedDeltaTime, ref extraVelocity);
 
-        rigidbody.MovePosition(rigidbody.position + moveMotion + extraMoveMotion);
+            rigidbody.MovePosition(rigidbody.position + moveMotion + extraMoveMotion);
+        }
+         if (isDashing)
+        {
+            rigidbody.velocity = new Vector2(dashSpd * lookingDirection, 0);
+        }
     }
 
     Vector2 MovePlayer(float deltaTime, ref Vector2 velocity)
@@ -165,23 +187,25 @@ public class PlayerMovement : MonoBehaviour
             
             for (int i = 0; i < count; i++) 
             {
-                
-                Vector2 currentNormal = hitBuffer[i].normal;
-                if (currentNormal.y > .65f) 
-                {
-                    isGrounded = true;
-                    allowJumpTime = .3f;
-                }
-                
-                float projection = Vector2.Dot (velocity, currentNormal);
-                if (projection < 0) 
-                {
-                    velocity = velocity - projection * currentNormal;
-                }
-                
-                float modifiedDistance = hitBuffer[i].distance - shellRadius;
-                distance = modifiedDistance < distance ? modifiedDistance : distance;
 
+                if (hitBuffer[i].transform.position.y < transform.position.y-platformsOffset)
+                {                
+                    Vector2 currentNormal = hitBuffer[i].normal;
+                    if (currentNormal.y > .65f) 
+                    {
+                        isGrounded = true;
+                        allowJumpTime = .3f;
+                    }
+                    
+                    float projection = Vector2.Dot (velocity, currentNormal);
+                    if (projection < 0) 
+                    {
+                        velocity = velocity - projection * currentNormal;
+                    }
+                    
+                    float modifiedDistance = hitBuffer[i].distance - shellRadius;
+                    distance = modifiedDistance < distance ? modifiedDistance : distance;
+                }
             }
         }
 

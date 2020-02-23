@@ -20,6 +20,7 @@ public class PlayerAttack : MonoBehaviour
     private bool isReady;
     public bool IsReady { get => isReady ; set => isReady = value; }
     private bool isCharging;
+    public bool IsCharging { get => isCharging ; }
 
     private Animator animator;
     private new Rigidbody2D rigidbody2D;

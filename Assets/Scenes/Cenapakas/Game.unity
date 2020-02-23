@@ -128,6 +128,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1057903414}
     m_Modifications:
+    - target: {fileID: 3430398297430340461, guid: c49c50dae0430c54f814261eafaadb56,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.7625
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430398297515719333, guid: c49c50dae0430c54f814261eafaadb56,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 3430398297777149661, guid: c49c50dae0430c54f814261eafaadb56,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2a5a5e450fdae5d42b0ffc60817c3940,
+        type: 3}
+    - target: {fileID: 4869461126421908916, guid: c49c50dae0430c54f814261eafaadb56,
+        type: 3}
+      propertyPath: m_UsedByEffector
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6630045974393870874, guid: c49c50dae0430c54f814261eafaadb56,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.02019322
+      objectReference: {fileID: 0}
+    - target: {fileID: 6630045974393870874, guid: c49c50dae0430c54f814261eafaadb56,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 3.7731426
+      objectReference: {fileID: 0}
+    - target: {fileID: 6630045974393870874, guid: c49c50dae0430c54f814261eafaadb56,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.19999999
+      objectReference: {fileID: 0}
     - target: {fileID: 7870912597935073732, guid: c49c50dae0430c54f814261eafaadb56,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1161,6 +1197,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2084793284 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3461671229477727496, guid: c49c50dae0430c54f814261eafaadb56,
+    type: 3}
+  m_PrefabInstance: {fileID: 13327679}
+  m_PrefabAsset: {fileID: 0}
+--- !u!251 &2084793289
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084793284}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!224 &2132627207 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6945369342412717922, guid: 72c19cb42ebf2274091fe3305d07ec36,

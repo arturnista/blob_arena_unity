@@ -9,6 +9,7 @@ TagManager:
   - Weapon
   - StarPeace
   - Bullet
+  - Platform
   layers:
   - Default
   - TransparentFX
