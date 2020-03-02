@@ -10,6 +10,7 @@ TagManager:
   - StarPeace
   - Bullet
   - Platform
+  - animator
   layers:
   - Default
   - TransparentFX
@@ -44,6 +45,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Back_Ground
+    uniqueID: 75783313
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
