@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PauseController : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class PauseController : MonoBehaviour
 
     public GameObject PauseCanvas;
     public AudioSource MusicAudioSource;
+
+    private InputSchema schema;
+    private StandaloneInputModule standaloneInputModule;
 
     private bool isPaused;
     public bool IsPaused { get => isPaused; }
@@ -26,15 +30,25 @@ public class PauseController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (schema != null)
         {
-            if (isPaused) OnResume();
-            else OnPause();
+            if (isPaused && schema.GetKeyUp(schema.Pause))
+            {
+                Resume();
+            }
         }
     }
 
-    public void OnPause()
+    public void Pause(InputSchema schema)
     {
+        if (GameController.main.GameEnded) return;
+
+        this.schema = schema;
+
+        standaloneInputModule = PauseCanvas.GetComponentInChildren<StandaloneInputModule>();
+        standaloneInputModule.verticalAxis = schema.VerticalAxis;
+        standaloneInputModule.horizontalAxis = schema.HorizontalAxis;
+
         foreach (var item in GameObject.FindObjectsOfType<Pausable>())
         {
             item.OnPause();
@@ -44,8 +58,9 @@ public class PauseController : MonoBehaviour
         if (MusicAudioSource != null) MusicAudioSource.Pause();
     }
 
-    public void OnResume()
+    public void Resume()
     {
+        if (GameController.main.GameEnded) return;
         foreach (var item in GameObject.FindObjectsOfType<Pausable>())
         {
             item.OnResume();

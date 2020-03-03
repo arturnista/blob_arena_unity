@@ -40,6 +40,10 @@ public class Player : MonoBehaviour, IPauseListener
             if (isAttacking) playerAttack.StopAttacking();
             isAttacking = false;
         }
+        if (Schema.GetKeyUp(Schema.Pause))
+        {
+            PauseController.Instance.Pause(Schema);
+        }
     }
 
     public void OnPause()

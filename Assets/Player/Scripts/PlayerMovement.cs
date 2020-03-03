@@ -187,7 +187,6 @@ public class PlayerMovement : MonoBehaviour, IPauseListener
             
             for (int i = 0; i < count; i++) 
             {
-
                 if (hitBuffer[i].transform.position.y < transform.position.y-platformsOffset)
                 {                
                     Vector2 currentNormal = hitBuffer[i].normal;

@@ -21,12 +21,14 @@ public class GameController : MonoBehaviour
     public AudioClip FinalSfx;
     [Header("UI")]
     public SelectCharacter SelCharacter;
-    public Canvas UICanvas;
+    public Canvas NormalUICanvas;
+    public Canvas WinUICanvas;
     public Sprite P1WinText;
     public Sprite P2WinText;
 
     private PlayerBag[] players;
     private bool gameEnded;
+    public bool GameEnded { get => gameEnded; }
 
     public bool ControlScene;
 
@@ -45,7 +47,7 @@ public class GameController : MonoBehaviour
         
         if(!ControlScene)
         {
-             UICanvas.gameObject.SetActive(false);
+             WinUICanvas.gameObject.SetActive(false);
 
              for(int i =0; i < 3; i++)
              {
@@ -140,10 +142,11 @@ public class GameController : MonoBehaviour
 
     IEnumerator WinCycle(GameObject winner, GameObject loser)
     {
-        UICanvas.gameObject.SetActive(true);
-        UICanvas.transform.Find("WinText").GetComponent<Image>().sprite = winner.tag == Tags.PLAYER1 ? P1WinText : P2WinText;
-        Image loserImage = UICanvas.transform.Find("Loser/Sprite").GetComponent<Image>();
-        Image winnerImage = UICanvas.transform.Find("Winner/Sprite").GetComponent<Image>();
+        NormalUICanvas.gameObject.SetActive(false);
+        WinUICanvas.gameObject.SetActive(true);
+        WinUICanvas.transform.Find("WinText").GetComponent<Image>().sprite = winner.tag == Tags.PLAYER1 ? P1WinText : P2WinText;
+        Image loserImage = WinUICanvas.transform.Find("Loser/Sprite").GetComponent<Image>();
+        Image winnerImage = WinUICanvas.transform.Find("Winner/Sprite").GetComponent<Image>();
 
         SetSprite(winnerImage, winner);
         SetSprite(loserImage, loser);
@@ -152,20 +155,20 @@ public class GameController : MonoBehaviour
         {
             if (winner.tag == Tags.PLAYER1)
             {
-                UICanvas.transform.Find("Winner/BowTie").gameObject.SetActive(false);
+                WinUICanvas.transform.Find("Winner/BowTie").gameObject.SetActive(false);
             }
             else
             {
-                UICanvas.transform.Find("Loser/BowTie").gameObject.SetActive(false);
+                WinUICanvas.transform.Find("Loser/BowTie").gameObject.SetActive(false);
             }
         }
         else
         {
-            UICanvas.transform.Find("Winner/BowTie").gameObject.SetActive(false);
-            UICanvas.transform.Find("Loser/BowTie").gameObject.SetActive(false);
+            WinUICanvas.transform.Find("Winner/BowTie").gameObject.SetActive(false);
+            WinUICanvas.transform.Find("Loser/BowTie").gameObject.SetActive(false);
         }
 
-        CanvasGroup group = UICanvas.GetComponent<CanvasGroup>();
+        CanvasGroup group = WinUICanvas.GetComponent<CanvasGroup>();
         group.interactable = false;
         float alpha = 0f;
 

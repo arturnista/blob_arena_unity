@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30cc26b248b4084988255cfb88922d0, type: 3}
   m_Name: Player1Schema
   m_EditorClassIdentifier: 
+  VerticalAxis: Vertical_1
   HorizontalAxis: Horizontal_1
   Jump: 770000005e010000
   Attack: 2000000060010000
   Dash: 7600000065010000
+  Pause: 1b00000000000000
