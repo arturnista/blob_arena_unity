@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IPauseListener
 {
     public float MoveSpeed;
     public float Acceleration;
@@ -122,20 +122,20 @@ public class PlayerMovement : MonoBehaviour
         if (inputSchema.GetKeyDown( inputSchema.Dash) && canDash && !GetComponent<PlayerAttack>().IsCharging)
         {
             canDash = false;
-            StartCoroutine(changeDashState(dashTime));
+            StartCoroutine(ChangeDashState(dashTime));
         }
-       if (isGrounded)
-       {
-           canDash = true;
-       }
+        if (isGrounded)
+        {
+            canDash = true;
+        }
 
 
-        Debug.Log("LD: " + lookingDirection);
-        Debug.Log("MD: " + moveDirection);
+        // Debug.Log("LD: " + lookingDirection);
+        // Debug.Log("MD: " + moveDirection);
 
         
-        anim.SetBool("isGrounded", isGrounded);
-        anim.SetBool("isDashing", isDashing);
+        // anim.SetBool("isGrounded", isGrounded);
+        // anim.SetBool("isDashing", isDashing);
     }
 
     void FlipSprite()
@@ -153,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
 
             rigidbody.MovePosition(rigidbody.position + moveMotion + extraMoveMotion);
         }
-         if (isDashing)
+        else
         {
             rigidbody.velocity = new Vector2(dashSpd * lookingDirection, 0);
         }
@@ -217,10 +217,20 @@ public class PlayerMovement : MonoBehaviour
         extraVelocity += velocity;
     }
 
-    private IEnumerator changeDashState(float waitTime)
+    public void OnPause()
+    {
+        enabled = false;
+    }
+
+    public void OnResume()
+    {
+        enabled = true;
+    }
+
+    private IEnumerator ChangeDashState(float waitTime)
     {
         isDashing = gameObject.GetComponent<TrailRenderer>().enabled = true;
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSecondsPausable(waitTime);
         isDashing = gameObject.GetComponent<TrailRenderer>().enabled = false;
     }
 }

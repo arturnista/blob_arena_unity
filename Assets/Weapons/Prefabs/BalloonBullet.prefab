@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4673132939875118832}
   - component: {fileID: 497133985381934394}
   - component: {fileID: 7356247589560427719}
+  - component: {fileID: 7540279231269019861}
+  - component: {fileID: 6532121552198611756}
   m_Layer: 20
   m_Name: BalloonBullet
   m_TagString: Bullet
@@ -88,6 +90,30 @@ MonoBehaviour:
     type: 3}
   HitPrefab: {fileID: 411235774611300951, guid: cef0dc674545668468e251072d33d557,
     type: 3}
+--- !u!114 &7540279231269019861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411235774611300951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7be797e399a3e84e89697b792cece67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6532121552198611756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411235774611300951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940a749f10e78f043a5d0339e543950f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6796836114821302843
 GameObject:
   m_ObjectHideFlags: 0

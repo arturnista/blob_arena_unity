@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerAttack : MonoBehaviour, IPauseListener
 {
     public float MinForce;
     public float MaxForce;
@@ -147,7 +147,7 @@ public class PlayerAttack : MonoBehaviour
 
     IEnumerator ReadyCoroutine()
     {
-        yield return new WaitForSeconds(.6f);
+        yield return new WaitForSecondsPausable(.6f);
         if(!isReady) SetReady();
     }
 
@@ -155,9 +155,18 @@ public class PlayerAttack : MonoBehaviour
     {
         isReady = true;
     }
-    
 
-    public void changeChargeState()
+    public void OnPause()
+    {
+        enabled = false;
+    }
+
+    public void OnResume()
+    {
+        enabled = true;
+    }
+    
+    public void ChangeChargeState()
     {
         isCharging = !isCharging;
     }

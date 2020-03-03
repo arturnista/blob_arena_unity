@@ -82,7 +82,7 @@ public class GameController : MonoBehaviour
     {
         while (!gameEnded)
         {
-            yield return new WaitForSeconds(SpawnTime);
+            yield return new WaitForSecondsPausable(SpawnTime);
 
             if (weaponsCreated < MaxWeapons)
             {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IPauseListener
 {
     public InputSchema Schema;
 
@@ -40,5 +40,15 @@ public class Player : MonoBehaviour
             if (isAttacking) playerAttack.StopAttacking();
             isAttacking = false;
         }
+    }
+
+    public void OnPause()
+    {
+        enabled = false;
+    }
+
+    public void OnResume()
+    {
+        enabled = true;
     }
 }

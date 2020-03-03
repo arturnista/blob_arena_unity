@@ -93,6 +93,8 @@ GameObject:
   - component: {fileID: 9142943224754588602}
   - component: {fileID: 9142943224754588601}
   - component: {fileID: 9043700118738419173}
+  - component: {fileID: 1964564441174915249}
+  - component: {fileID: 6912480427657968481}
   m_Layer: 8
   m_Name: Tomato
   m_TagString: Weapon
@@ -166,3 +168,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 411235774611300951, guid: fefd76fe6118b3f4c925ad26e527e893,
     type: 3}
+--- !u!114 &1964564441174915249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142943224754588549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7be797e399a3e84e89697b792cece67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6912480427657968481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142943224754588549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940a749f10e78f043a5d0339e543950f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

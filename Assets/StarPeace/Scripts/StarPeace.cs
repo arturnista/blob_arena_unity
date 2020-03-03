@@ -13,7 +13,7 @@ public class StarPeace : MonoBehaviour
     IEnumerator DisableCoroutine()
     {
         gameObject.tag = Tags.UNTAGGED;
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSecondsPausable(.1f);
         gameObject.tag = Tags.STAR_PEACE;
     }
 

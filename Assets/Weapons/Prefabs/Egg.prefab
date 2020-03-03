@@ -93,6 +93,8 @@ GameObject:
   - component: {fileID: 9142943224754588602}
   - component: {fileID: 9142943224754588601}
   - component: {fileID: 9043700118738419173}
+  - component: {fileID: 5957354008754763348}
+  - component: {fileID: 8846677305015903724}
   m_Layer: 8
   m_Name: Egg
   m_TagString: Weapon
@@ -166,3 +168,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 411235774611300951, guid: 4982bb77bbd3efe40a6eea5ff82617db,
     type: 3}
+--- !u!114 &5957354008754763348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142943224754588549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7be797e399a3e84e89697b792cece67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8846677305015903724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142943224754588549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940a749f10e78f043a5d0339e543950f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

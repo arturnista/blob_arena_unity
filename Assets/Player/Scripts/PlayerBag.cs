@@ -41,7 +41,7 @@ public class PlayerBag : MonoBehaviour
         if(anim.GetBool("isCharging"))
         {
             anim.SetBool("isCharging", false);
-            GetComponent<PlayerAttack>().changeChargeState();
+            GetComponent<PlayerAttack>().ChangeChargeState();
         }
         if(GetComponent<PlayerAttack>().IsReady)
             GetComponent<PlayerAttack>().IsReady = false;
@@ -93,7 +93,7 @@ public class PlayerBag : MonoBehaviour
         movement.IsStopped = true;
         player.IsStopped = true;
         
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSecondsPausable(.5f);
         
         movement.IsStopped = false;
         player.IsStopped = false;
