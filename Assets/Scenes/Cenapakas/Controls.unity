@@ -1012,6 +1012,27 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5051775112629074952, guid: 68b92ea9b9e11e445baea4478179da2c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0b78ae16a5425384287d4f38d86c219a,
+        type: 3}
+    - target: {fileID: 5051775112629074952, guid: 68b92ea9b9e11e445baea4478179da2c,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.84313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 5051775112629074952, guid: 68b92ea9b9e11e445baea4478179da2c,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.84313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 5051775112629074952, guid: 68b92ea9b9e11e445baea4478179da2c,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.84313726
+      objectReference: {fileID: 0}
     - target: {fileID: 9074417541531196531, guid: 68b92ea9b9e11e445baea4478179da2c,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -1318,7 +1339,12 @@ PrefabInstance:
     - target: {fileID: 5452759486105956598, guid: d08a36ba0169e3f40989022f34bdaa38,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.2
+      value: 3.508455
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452759486105956598, guid: d08a36ba0169e3f40989022f34bdaa38,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.261
       objectReference: {fileID: 0}
     - target: {fileID: 5452759486105956599, guid: d08a36ba0169e3f40989022f34bdaa38,
         type: 3}
@@ -1344,6 +1370,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5452759486606857081, guid: d08a36ba0169e3f40989022f34bdaa38,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.59
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d08a36ba0169e3f40989022f34bdaa38, type: 3}

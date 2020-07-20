@@ -134,8 +134,8 @@ public class PlayerMovement : MonoBehaviour, IPauseListener
         // Debug.Log("MD: " + moveDirection);
 
         
-        // anim.SetBool("isGrounded", isGrounded);
-        // anim.SetBool("isDashing", isDashing);
+        anim.SetBool("isGrounded", isGrounded);
+        anim.SetBool("isDashing", isDashing);
     }
 
     void FlipSprite()
